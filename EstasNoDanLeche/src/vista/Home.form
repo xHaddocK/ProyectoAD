@@ -89,11 +89,6 @@
                     <Property name="text" type="java.lang.String" value="Por Nombre"/>
                   </Properties>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Por Direcci&#xf3;n"/>
-                  </Properties>
-                </MenuItem>
               </SubComponents>
             </Menu>
           </SubComponents>
@@ -126,7 +121,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem15">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Por Direcci&#xf3;n"/>
+                    <Property name="text" type="java.lang.String" value="Por Ciudad"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>

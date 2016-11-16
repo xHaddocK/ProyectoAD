@@ -43,7 +43,6 @@ public class Home extends javax.swing.JFrame {
         jMenu8 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
@@ -113,9 +112,6 @@ public class Home extends javax.swing.JFrame {
         jMenuItem10.setText("Por Nombre");
         jMenu8.add(jMenuItem10);
 
-        jMenuItem11.setText("Por Dirección");
-        jMenu8.add(jMenuItem11);
-
         jMenu3.add(jMenu8);
 
         jMenuBar1.add(jMenu3);
@@ -134,7 +130,7 @@ public class Home extends javax.swing.JFrame {
         jMenuItem14.setToolTipText("");
         jMenu9.add(jMenuItem14);
 
-        jMenuItem15.setText("Por Dirección");
+        jMenuItem15.setText("Por Ciudad");
         jMenu9.add(jMenuItem15);
 
         jMenu4.add(jMenu9);
@@ -228,7 +224,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
