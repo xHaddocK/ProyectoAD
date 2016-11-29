@@ -107,4 +107,23 @@ public class ProyectoBD extends ConexionBD{
             return false;
         }
     }
+    
+    public static boolean update(Proyecto p) throws Exception{
+        connect();
+        
+        String query = "UPDATE PROYECTO SET NOMBRE = ?, CIUDAD = ? WHERE COD_PROY = ?";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, p.getNombre());
+        sentenciaCon.setString(2, p.getCiudad());
+        sentenciaCon.setString(3, p.getId());
+        
+        if(sentenciaCon.executeUpdate() > 0){
+            disconnect();
+            return true;
+        }
+        else{
+            disconnect();
+            return false;
+        }
+    }
 }

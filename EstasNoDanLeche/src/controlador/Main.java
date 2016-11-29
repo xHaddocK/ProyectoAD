@@ -7,6 +7,7 @@ package controlador;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.scripts.JO;
 import modelo.clases.*;
 
 /**
@@ -16,34 +17,30 @@ import modelo.clases.*;
 public class Main {
     
     public static void main(String[]args) throws Exception{
-        ArrayList<Proyecto> list = Proyecto.getAll();
+        Pieza p;
         
-        Proyecto p = new Proyecto("C00005", "PROYECTOPRUEBA", "ELOJETEMORENO");
-        
-        if(Proyecto.insert(p)){
-            System.out.println("Introducido");
+        do{
+            String id = JOptionPane.showInputDialog("ID DE LA PIEZA A MODIFICAR");
+            p = new Pieza();
+            p.setId(id);
+            p = Pieza.getByCod(p);
         }
-        else{
-            System.out.println("No se ha podido introducir, que ecatombe");
-        }
+        while(p.getId() == null);
         
-        System.out.println(list.size());
+        JOptionPane.showMessageDialog(null, p.getId() + "\n" + p.getNombre() + "\n" + p.getDescripcion() + "\n" + p.getPrecio());
         
-        list = Proyecto.getAll();
+        String nom = JOptionPane.showInputDialog("Nuevo nombre");
+        String des = JOptionPane.showInputDialog("Nueva descripcion");
+        double pre = Double.parseDouble(JOptionPane.showInputDialog("Nuevo precio"));
         
-        System.out.println(list.size());
+        p.setNombre(nom);
+        p.setDescripcion(des);
+        p.setPrecio(pre);
         
-        while(true){
-            Proyecto p2 = new Proyecto();
-            p2.setId(JOptionPane.showInputDialog("Introduce el codigo del producto que quieras borrar"));
-            
-            if(Proyecto.delete(p2)){
-                System.out.println("Borrao");
-            }
-            else{
-                System.out.println("No borrao");
-            }
-        }
+        if(Pieza.update(p))
+            JOptionPane.showMessageDialog(null, "UPDATEADO CORRECTAMENTE");
+        else
+            JOptionPane.showMessageDialog(null, "NO UPDATEADO");
         
     }
     

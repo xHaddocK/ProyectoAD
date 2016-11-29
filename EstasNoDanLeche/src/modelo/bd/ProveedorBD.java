@@ -108,4 +108,24 @@ public class ProveedorBD extends ConexionBD{
             return false;
         }
     }
+    
+    public static boolean update(Proveedor p) throws Exception{
+        connect();
+        
+        String query = "UPDATE PROVEEDOR SET NOMBRE = ?, APELLIDOS = ?, DIRECCION = ? WHERE COD_PROV = ?";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, p.getNombre());
+        sentenciaCon.setString(2, p.getApellido());
+        sentenciaCon.setString(3, p.getDireccion());
+        sentenciaCon.setString(4, p.getId());
+        
+        if(sentenciaCon.executeUpdate() > 0){
+            disconnect();
+            return true;
+        }
+        else{
+            disconnect();
+            return false;
+        }
+    }
 }

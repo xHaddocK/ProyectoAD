@@ -39,6 +39,10 @@ public class Pieza {
         return PiezaBD.delete(p);
     }
     
+    public static boolean update(Pieza p) throws Exception{
+        return PiezaBD.update(p);
+    }
+    
 //GETTER AND SETTER
     
     public String getId() {

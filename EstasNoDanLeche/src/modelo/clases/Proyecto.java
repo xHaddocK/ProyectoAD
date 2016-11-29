@@ -37,6 +37,10 @@ public class Proyecto {
         return ProyectoBD.delete(p);
     }
     
+    public static boolean update(Proyecto p) throws Exception{
+        return ProyectoBD.update(p);
+    }
+    
 //GETTER AND SETTER
     public String getId() {
         return id;

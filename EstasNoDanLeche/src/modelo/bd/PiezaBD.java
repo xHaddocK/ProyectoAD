@@ -108,4 +108,24 @@ public class PiezaBD extends ConexionBD{
             return false;
         }
     }
+    
+    public static boolean update(Pieza p) throws Exception{
+        connect();
+        
+        String query = "UPDATE PIEZA SET NOMBRE = ?, PRECIO = ?, DESCRIPCION = ? WHERE COD_PIE = ?";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, p.getNombre());
+        sentenciaCon.setString(2, String.valueOf(p.getPrecio()));
+        sentenciaCon.setString(3, p.getDescripcion());
+        sentenciaCon.setString(4, p.getId());
+        
+        if(sentenciaCon.executeUpdate() > 0){
+            disconnect();
+            return true;
+        }
+        else{
+            disconnect();
+            return false;
+        }
+    }
 }

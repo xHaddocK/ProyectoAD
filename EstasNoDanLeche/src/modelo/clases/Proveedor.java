@@ -38,6 +38,10 @@ public class Proveedor {
         return ProveedorBD.delete(p);
     }
     
+    public static boolean update(Proveedor p) throws Exception{
+        return ProveedorBD.update(p);
+    }
+    
 //GETTER AND SETTER
     public String getId() {
         return id;
