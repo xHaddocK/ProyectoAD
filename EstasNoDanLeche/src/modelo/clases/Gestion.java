@@ -1,5 +1,8 @@
 package modelo.clases;
 
+import java.util.ArrayList;
+import modelo.bd.GestionBD;
+
 public class Gestion {
     private Proveedor prov;
     private Pieza pieza;
@@ -18,6 +21,55 @@ public class Gestion {
 
 //BD METHODS
     
+    //Obtener las piezas suministradas por proveedor, devuelve -1 si hay algun error
+    public static int piezasByProv(Proveedor p) throws Exception{
+        return GestionBD.piezasByProv(p);
+    }
+
+    //Obtener las piezas suministradas a proyectos
+    public static ArrayList piezasToProv() throws Exception{
+        return GestionBD.piezasToProv();
+    }
+    
+    //RESUMENES ESTADISTICOS VV
+    //Nº PIEZAS Y CANTIDAD DE PIEZAS SUMINISTRADAS EN PROYECTOS
+        //Devuelve un array de dos posiciones, en la 0 está el número de piezas que han sido suministradas a proyectos y en la 1 está la cantidad total de piezas 
+        //{-1,-1} si hay algún error
+    public static int[] numCantPiezasToProy() throws Exception{
+        return GestionBD.numCantPiezasToProy();
+    }
+    
+    //Nº PIEZAS Y CANTIDAD DE PIEZAS SUMINISTRADAS POR PROVEEDOR
+    public static int[] numCantPiezasByProv(Proveedor p) throws Exception{
+        return GestionBD.numCantPiezasByProv(p);
+    }
+    
+    //PIEZA DE LA QUE SE HA SUMINISTRADO LA MAYOR CANTIDAD
+    public static Pieza maxCantPieza() throws Exception{
+        return GestionBD.maxCantPieza();
+    }
+    
+    //PIEZA QUE SE HA SUMINISTRADO A MÁS PROYECTOS
+    public static Pieza piezaMaxProy() throws Exception{
+        return GestionBD.piezaMaxProy();
+    }
+    
+    //PROVEEDOR QUE HA SUMINISTRADO MÁS CANTIDAD DE PIEZAS
+    public static Proveedor provMaxCantPiezas() throws Exception{
+        return GestionBD.provMaxCantPiezas();
+    }
+    
+    //PROVEEDOR QUE HA SUMINISTRADO A MÁS PROYECTOS, Y NÚMERO DE PROYECTOS 
+        //Arraylist posicion 0 el proveedor, posición 1 un int con la cantidad de proyectos
+    public static ArrayList provMaxProyYCant() throws Exception{
+        return GestionBD.provMaxProyYCant();
+    }
+    
+    //PROVEEDOR QUE HA SUMINISTRADO MAS PIEZAS Y NÚMERO DE PIEZAS
+        //Arraylist posicion 0 el proveedor, posicion 1 un int con la CANTIDAD de piezas
+    public static ArrayList provMaxPiezasYCant() throws Exception{
+        return GestionBD.provMaxPiezasYCant();
+    }
     
     
 //GETTER AND SETTER
