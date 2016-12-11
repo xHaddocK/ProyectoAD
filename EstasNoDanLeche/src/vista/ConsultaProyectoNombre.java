@@ -37,9 +37,14 @@ public class ConsultaProyectoNombre extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("Escribe el nombre o parte del nombre");
+        jLabel1.setText("Escribe el nombre");
 
         jButton1.setText("Buscar Pieza");
 
@@ -78,10 +83,9 @@ public class ConsultaProyectoNombre extends javax.swing.JFrame {
                                         .addComponent(jLabel2)
                                         .addComponent(jLabel4)
                                         .addComponent(jLabel3))))
-                            .addContainerGap(30, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jSeparator1)
-                            .addContainerGap()))))
+                            .addGap(0, 131, Short.MAX_VALUE))
+                        .addComponent(jSeparator1))
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,6 +112,10 @@ public class ConsultaProyectoNombre extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE); 
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

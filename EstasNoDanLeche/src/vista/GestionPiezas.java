@@ -5,17 +5,25 @@
  */
 package vista;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.clases.Pieza;
+
 /**
  *
  * @author 9fpsp02
  */
 public class GestionPiezas extends javax.swing.JFrame {
-
+public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
+    public static int posicionLista;
     /**
      * Creates new form GestionPiezas
      */
     public GestionPiezas() {
         initComponents();
+        
     }
 
     /**
@@ -61,11 +69,15 @@ public class GestionPiezas extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(860, 484));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("ALTAS BAJAS Y MODIFICACIONES");
 
-        jLabel2.setText("Código de Proveedor");
+        jLabel2.setText("Código de Pieza");
 
         jLabel3.setText("Nombre");
 
@@ -162,7 +174,7 @@ public class GestionPiezas extends javax.swing.JFrame {
 
         jLabel8.setText("Nombre");
 
-        jLabel9.setText("Ciudad");
+        jLabel9.setText("Descripción");
 
         jTextField7.setEditable(false);
 
@@ -178,14 +190,39 @@ public class GestionPiezas extends javax.swing.JFrame {
         });
 
         jButton5.setText("Ejecutar Consulta");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("|<<");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("<<");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText(">>");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText(">>|");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -295,9 +332,78 @@ public class GestionPiezas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE); 
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        inicializarDatos();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+         jTextField9.setText(String.valueOf(piezasList.size()));
+         posicionLista = piezasList.size() - 1;
+        Pieza p = piezasList.get(posicionLista);
+        jTextField5.setText(p.getId());
+        jTextField6.setText(p.getNombre());
+        jTextField7.setText(p.getDescripcion());
+        
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+       posicionLista = 1;
+        jTextField9.setText(String.valueOf(posicionLista));
+        Pieza p = piezasList.get(0);
+        jTextField5.setText(p.getId());
+        jTextField6.setText(p.getNombre());
+        jTextField7.setText(p.getDescripcion());
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+         if (posicionLista + 1 > piezasList.size()) {
+            JOptionPane.showMessageDialog(this, "No hay más registros");
+        } else {
+            posicionLista += 1;
+            jTextField9.setText(String.valueOf(posicionLista));
+            Pieza p = piezasList.get(posicionLista - 1);
+            jTextField5.setText(p.getId());
+            jTextField6.setText(p.getNombre());
+            jTextField7.setText(p.getDescripcion());
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+         if (posicionLista -1 == 0) {
+            JOptionPane.showMessageDialog(this, "No hay más registros");
+        } else {
+            posicionLista -= 1;
+            jTextField9.setText(String.valueOf(posicionLista));
+            Pieza p = piezasList.get(posicionLista - 1);
+            jTextField5.setText(p.getId());
+            jTextField6.setText(p.getNombre());
+            jTextField7.setText(p.getDescripcion());
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    public void inicializarDatos() {
+
+        try {
+            piezasList = Pieza.getAll();
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProyectos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Pieza p = piezasList.get(0);
+        posicionLista = 1;
+        jTextField9.setText(String.valueOf(posicionLista));
+        jTextField5.setText(p.getId());
+        jTextField6.setText(p.getNombre());
+        jTextField7.setText(p.getDescripcion());
+        jTextField10.setText(String.valueOf(piezasList.size()));
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

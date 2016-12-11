@@ -5,17 +5,27 @@
  */
 package vista;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.clases.Proveedor;
+
 /**
  *
  * @author 9fpsp02
  */
 public class GestionProveedores extends javax.swing.JFrame {
 
+    public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
+    public static int posicionLista;
+
     /**
      * Creates new form GestionProveedores
      */
     public GestionProveedores() {
         initComponents();
+
     }
 
     /**
@@ -64,6 +74,11 @@ public class GestionProveedores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de Proveedores");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("ALTAS BAJAS Y MODIFICACIONES");
 
@@ -184,14 +199,39 @@ public class GestionProveedores extends javax.swing.JFrame {
         });
 
         jButton5.setText("Ejecutar Consulta");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("|<<");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("<<");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText(">>");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText(">>|");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -307,9 +347,84 @@ public class GestionProveedores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        inicializarDatos();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        jTextField9.setText(String.valueOf(proveedoresList.size()));
+         posicionLista = proveedoresList.size() - 1;
+        Proveedor p = proveedoresList.get(posicionLista);
+        jTextField5.setText(p.getId());
+        jTextField6.setText(p.getNombre());
+        jTextField7.setText(p.getApellido());
+        jTextField8.setText(p.getDireccion());
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        posicionLista = 1;
+        jTextField9.setText(String.valueOf(posicionLista));
+        Proveedor p = proveedoresList.get(0);
+        jTextField5.setText(p.getId());
+        jTextField6.setText(p.getNombre());
+        jTextField7.setText(p.getApellido());
+        jTextField8.setText(p.getDireccion());
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        if (posicionLista + 1 > proveedoresList.size()) {
+            JOptionPane.showMessageDialog(this, "No hay más registros");
+        } else {
+            posicionLista += 1;
+            jTextField9.setText(String.valueOf(posicionLista));
+            Proveedor p = proveedoresList.get(posicionLista - 1);
+            jTextField5.setText(p.getId());
+            jTextField6.setText(p.getNombre());
+            jTextField7.setText(p.getApellido());
+            jTextField8.setText(p.getDireccion());
+        }
+
+
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+          if (posicionLista -1 == 0) {
+            JOptionPane.showMessageDialog(this, "No hay más registros");
+        } else {
+            posicionLista -= 1;
+            jTextField9.setText(String.valueOf(posicionLista));
+            Proveedor p = proveedoresList.get(posicionLista - 1);
+            jTextField5.setText(p.getId());
+            jTextField6.setText(p.getNombre());
+            jTextField7.setText(p.getApellido());
+            jTextField8.setText(p.getDireccion());
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    public void inicializarDatos() {
+
+        try {
+            proveedoresList = Proveedor.getAll();
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProyectos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Proveedor p = proveedoresList.get(0);
+        posicionLista = 1;
+        jTextField9.setText(String.valueOf(posicionLista));
+        jTextField5.setText(p.getId());
+        jTextField6.setText(p.getNombre());
+        jTextField7.setText(p.getApellido());
+        jTextField8.setText(p.getDireccion());
+        jTextField10.setText(String.valueOf(proveedoresList.size()));
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
