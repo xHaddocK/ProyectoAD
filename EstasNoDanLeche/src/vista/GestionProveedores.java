@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.bd.ProveedorBD;
 import modelo.clases.Proveedor;
 
 /**
@@ -91,12 +92,32 @@ public class GestionProveedores extends javax.swing.JFrame {
         jLabel5.setText("Dirección");
 
         jButton1.setText("Limpiar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Insertar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Modificar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Eliminar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -357,7 +378,7 @@ public class GestionProveedores extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         jTextField9.setText(String.valueOf(proveedoresList.size()));
-         posicionLista = proveedoresList.size() - 1;
+        posicionLista = proveedoresList.size() - 1;
         Proveedor p = proveedoresList.get(posicionLista);
         jTextField5.setText(p.getId());
         jTextField6.setText(p.getNombre());
@@ -392,7 +413,7 @@ public class GestionProveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-          if (posicionLista -1 == 0) {
+        if (posicionLista - 1 == 0) {
             JOptionPane.showMessageDialog(this, "No hay más registros");
         } else {
             posicionLista -= 1;
@@ -404,6 +425,125 @@ public class GestionProveedores extends javax.swing.JFrame {
             jTextField8.setText(p.getDireccion());
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         String strOut = "";
+        String result;
+        Proveedor proveedorToInsert = new Proveedor();
+        proveedorToInsert.setId(jTextField1.getText().toUpperCase());
+        
+         if(jTextField2.getText().length() > 20){
+            strOut=jTextField2.getText();
+     result = strOut.substring(0,20);
+     proveedorToInsert.setNombre(result);
+        } else{
+            proveedorToInsert.setNombre(jTextField2.getText());
+        }
+         
+         if(jTextField3.getText().length() > 30){
+            strOut=jTextField3.getText();
+     result = strOut.substring(0,30);
+     proveedorToInsert.setNombre(result);
+        } else{
+            proveedorToInsert.setApellido(jTextField3.getText());
+        }
+         
+          if(jTextField4.getText().length() > 40){
+            strOut=jTextField4.getText();
+     result = strOut.substring(0,40);
+     proveedorToInsert.setDireccion(result);
+        } else{
+             proveedorToInsert.setDireccion(jTextField4.getText());
+        }
+        
+       
+       
+        try {
+            if (proveedorToInsert.getId().length() > 6) {
+                JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
+            } else {
+                ProveedorBD.insert(proveedorToInsert);
+                JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
+            }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al insertar el campo");
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Proveedor proveedorToDelete = new Proveedor();
+        proveedorToDelete.setId(jTextField1.getText().toUpperCase());
+        Proveedor comprobarExistencia = null;
+        try {
+            comprobarExistencia = ProveedorBD.getByCod(proveedorToDelete);
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            if (comprobarExistencia.getId() != null) {
+                try {
+                    if (proveedorToDelete.getId().length() > 6) {
+                        JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
+                    } else {
+                        ProveedorBD.delete(proveedorToDelete);
+                        JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
+                    }
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error al eliminar el campo");
+                    Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No existe un registro con ese código");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Proveedor proveedorToUpdate = new Proveedor();
+        proveedorToUpdate.setId(jTextField1.getText().toUpperCase());
+        proveedorToUpdate.setNombre(jTextField2.getText());
+        proveedorToUpdate.setApellido(jTextField3.getText());
+        proveedorToUpdate.setDireccion(jTextField4.getText());
+        Proveedor comprobarExistencia = null;
+        try {
+            comprobarExistencia = ProveedorBD.getByCod(proveedorToUpdate);
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            if (comprobarExistencia.getId() != null) {
+                try {
+                    if (proveedorToUpdate.getId().length() > 6) {
+                        JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
+                    } else {
+                        ProveedorBD.update(proveedorToUpdate);
+                        JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
+                    }
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error al actualizar el campo");
+                    Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No existe un registro con ese código");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

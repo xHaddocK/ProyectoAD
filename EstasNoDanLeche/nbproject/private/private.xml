@@ -3,16 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/ConexionBD.java</file>
-            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/controlador/Main.java</file>
-            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/clases/Gestion.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProyectoNombre.java</file>
             <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/ProveedorBD.java</file>
-            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/ProyectoBD.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/Home.java</file>
             <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/clases/Proveedor.java</file>
-            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/GestionBD.java</file>
-            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/GestionProyectos.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProvNombre.java</file>
             <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/GestionProveedores.java</file>
             <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/clases/Proyecto.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProvDir.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaPiezasNombre.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/GestionPiezas.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/PiezaBD.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaPiezasCod.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/clases/Gestion.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProyectoCod.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/ProyectoBD.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProyectoCiudad.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProvCod.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/GestionProyectos.java</file>
         </group>
     </open-files>
 </project-private>

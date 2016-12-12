@@ -26,7 +26,7 @@ public class Proveedor {
         return ProveedorBD.getByCod(p);
     }
     
-    public static Proveedor getByNombre(Proveedor p) throws Exception{
+    public static ArrayList getByNombre(Proveedor p) throws Exception{
         return ProveedorBD.getByNombre(p);
     }
     

@@ -40,7 +40,7 @@ public class ProveedorBD extends ConexionBD{
         return p2;
     }
     
-    public static Proveedor getByNombre(Proveedor p) throws SQLException, Exception{
+    public static ArrayList getByNombre(Proveedor p) throws SQLException, Exception{
         //Puede haber dos nombres iguales por lo que retorno una lista
         //con todos los que tengan ese nombre
         connect();
@@ -50,11 +50,11 @@ public class ProveedorBD extends ConexionBD{
         sentenciaCon.setString(1, p.getNombre());
         
         rs = sentenciaCon.executeQuery();
-        Proveedor p2 = (Proveedor) convertirAObjeto(rs, "PROVEEDOR");
+        ArrayList lista =  convertirAArray(rs, "PROVEEDOR");
        
         
         disconnect();
-        return p2;
+        return lista;
     }
     
     public static boolean insert(Proveedor p) throws Exception{

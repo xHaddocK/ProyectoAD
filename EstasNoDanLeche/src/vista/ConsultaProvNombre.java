@@ -166,11 +166,10 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String codigoSeleccionado = jTextField1.getText();
         Proveedor p = new Proveedor();
-        Proveedor proveedorRecibido;
+        p.setId(codigoSeleccionado);
         try {
-            p.setId(codigoSeleccionado);
-            proveedorRecibido = Proveedor.getByNombre(p);
-            completarDatosProveedorRecibido(proveedorRecibido);
+            proveedoresList = Proveedor.getByNombre(p);
+            completarComboProveedoresRecibidos(proveedoresList);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "No existe ningún proveedor con ese código");
         }
@@ -180,11 +179,19 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
     /**
      * @param args the command line arguments
      */
-    public void completarDatosProveedorRecibido(Proveedor p) {
-        jLabel6.setText(p.getId());
-        jLabel7.setText(p.getNombre());
-        jLabel8.setText(p.getApellido());
-        jLabel9.setText(p.getDireccion());
+    public void completarComboProveedoresRecibidos(ArrayList lista) {
+        jComboBox1.removeAllItems();
+        Proveedor p;
+        for (Object proveedor : lista) {
+            p=(Proveedor) proveedor;
+           jComboBox1.addItem(p.getId()); 
+        }
+        jComboBox1.repaint();
+        
+//        jLabel6.setText(p.getId());
+//        jLabel7.setText(p.getNombre());
+//        jLabel8.setText(p.getApellido());
+//        jLabel9.setText(p.getDireccion());
         
     }
     
