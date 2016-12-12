@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.bd.ProveedorBD;
 import modelo.clases.Proveedor;
+import static vista.ConsultaProvDir.proveedoresList;
 import static vista.GestionProveedores.proveedoresList;
 
 /**
@@ -23,7 +25,6 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
      */
     public ConsultaProvCod() throws Exception {
         initComponents();
-        cargarDatoscombo();
     }
 
     /**
@@ -37,8 +38,6 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
 
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -48,6 +47,8 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consulta de Proveedores por Código");
@@ -59,6 +60,14 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Escribe el código");
+
+        jLabel2.setText("CÓDIGO:");
+
+        jLabel3.setText("NOMBRE:");
+
+        jLabel4.setText("APELLIDOS:");
+
+        jLabel5.setText("DIRECCIÓN:");
 
         jButton1.setText("Buscar Proveedor");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -72,19 +81,6 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
                 jComboBox1ItemStateChanged(evt);
             }
         });
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("CÓDIGO:");
-
-        jLabel3.setText("NOMBRE:");
-
-        jLabel4.setText("APELLIDOS:");
-
-        jLabel5.setText("DIRECCIÓN:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,16 +89,6 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,8 +101,18 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))))
-                .addContainerGap(149, Short.MAX_VALUE))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +122,7 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,7 +142,7 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel9))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -157,44 +153,51 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String codigoSeleccionado = jTextField1.getText();
+        String nombreSeleccionado = jTextField1.getText();
         Proveedor p = new Proveedor();
-        Proveedor proveedorRecibido;
+        p.setId(nombreSeleccionado);
         try {
-            p.setId(codigoSeleccionado);
-            proveedorRecibido = Proveedor.getByCod(p);
-            completarDatosProveedorRecibido(proveedorRecibido);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "No existe ningún proveedor con ese código");
+            proveedoresList = Proveedor.getByCods(p);
+            completarDatosProveedorRecibidos(proveedoresList);
+        } catch (Exception ex) {
+            Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error");
         }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        jTextField1.setText(jComboBox1.getSelectedItem().toString());
-        
+       Proveedor p = new Proveedor();
+           Proveedor p2 = new Proveedor();
+        if (jComboBox1.getSelectedItem().toString()!=null) {
+              p.setId(jComboBox1.getSelectedItem().toString());
+    try {
+       p2= ProveedorBD.getByCod(p);
+    } catch (Exception ex) {
+        Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
+    }
+      
+       
+                jLabel6.setText(p2.getId());
+        jLabel7.setText(p2.getNombre());
+        jLabel8.setText(p2.getApellido());
+        jLabel9.setText(p2.getDireccion());   
+        }
+  
     }//GEN-LAST:event_jComboBox1ItemStateChanged
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public void completarDatosProveedorRecibido(Proveedor p) {
-        jLabel6.setText(p.getId());
-        jLabel7.setText(p.getNombre());
-        jLabel8.setText(p.getApellido());
-        jLabel9.setText(p.getDireccion());
+    public void completarDatosProveedorRecibidos(ArrayList lista) {
+         jComboBox1.removeAllItems();
+        Proveedor p;
         
-    }
-    
-    public void cargarDatoscombo() throws Exception{
-    proveedoresList = Proveedor.getAll();
-    for(Proveedor p:proveedoresList){
-        jComboBox1.addItem(p.getId());
-    }
+        for (Object proveedor : lista) {
+            p=(Proveedor) proveedor;
+           jComboBox1.addItem(p.getId()); 
+        }
+        jComboBox1.repaint();
+        
     }
 
     public static void main(String args[]) {

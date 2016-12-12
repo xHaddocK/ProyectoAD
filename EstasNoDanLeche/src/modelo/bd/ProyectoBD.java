@@ -40,12 +40,44 @@ public class ProyectoBD extends ConexionBD{
         return p2;
     }
     
+     public static ArrayList getByCods(Proyecto p) throws SQLException, Exception{
+        connect();
+        
+        String query = "SELECT * FROM PROYECTO WHERE COD_PROY = ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, p.getId());
+        
+        rs = sentenciaCon.executeQuery();
+        
+        ArrayList lista = convertirAArray(rs, "PROYECTO");
+        
+        disconnect();
+        return lista;
+    }
+    
     public static ArrayList getByNombre(Proyecto p) throws SQLException, Exception{
         //Puede haber dos nombres iguales por lo que retorno una lista
         //con todos los que tengan ese nombre
         connect();
         
         String query = "SELECT * FROM PROYECTO WHERE NOMBRE = ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, p.getNombre());
+        
+        rs = sentenciaCon.executeQuery();
+        
+        ArrayList lista = convertirAArray(rs, "PROYECTO");
+        
+        disconnect();
+        return lista;
+    }
+    
+    public static ArrayList getByCiudad(Proyecto p) throws SQLException, Exception{
+        //Puede haber dos nombres iguales por lo que retorno una lista
+        //con todos los que tengan ese nombre
+        connect();
+        
+        String query = "SELECT * FROM PROYECTO WHERE CIUDAD = ?;";
         sentenciaCon = getConnection().prepareStatement(query);
         sentenciaCon.setString(1, p.getNombre());
         

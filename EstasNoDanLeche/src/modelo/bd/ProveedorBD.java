@@ -40,6 +40,21 @@ public class ProveedorBD extends ConexionBD{
         return p2;
     }
     
+    public static ArrayList getByCods(Proveedor p) throws SQLException, Exception{
+        connect();
+        
+        String query = "SELECT * FROM PROVEEDOR WHERE COD_PROV = ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, p.getId());
+        
+        rs = sentenciaCon.executeQuery();
+        
+        ArrayList lista =  convertirAArray(rs, "PROVEEDOR");
+        
+        disconnect();
+        return lista;
+    }
+    
     public static ArrayList getByDir(Proveedor p) throws SQLException, Exception{
         connect();
         

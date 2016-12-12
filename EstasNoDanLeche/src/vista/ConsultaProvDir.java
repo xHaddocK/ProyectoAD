@@ -68,9 +68,9 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
 
         jLabel5.setText("DIRECCIÓN:");
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
             }
         });
 
@@ -151,7 +151,19 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE); 
     }//GEN-LAST:event_formWindowClosing
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String nombreSeleccionado = jTextField1.getText();
+        Proveedor p = new Proveedor();
+        p.setDireccion(nombreSeleccionado);
+        try {
+            proveedoresList = Proveedor.getByDir(p);
+            completarDatosProveedorRecibidos(proveedoresList);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "No existe ningún proveedor con ese código");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
          Proveedor p = new Proveedor();
            Proveedor p2 = new Proveedor();
        
@@ -167,20 +179,7 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         jLabel7.setText(p2.getId());
         jLabel8.setText(p2.getApellido());
         jLabel9.setText(p2.getDireccion());
-
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nombreSeleccionado = jTextField1.getText();
-        Proveedor p = new Proveedor();
-        p.setDireccion(nombreSeleccionado);
-        try {
-            proveedoresList = Proveedor.getByDir(p);
-            completarDatosProveedorRecibidos(proveedoresList);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "No existe ningún proveedor con ese código");
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments

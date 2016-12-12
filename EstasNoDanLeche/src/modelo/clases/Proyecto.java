@@ -25,8 +25,16 @@ public class Proyecto {
         return ProyectoBD.getByCod(p);
     }
     
+     public static ArrayList getByCods(Proyecto p) throws Exception{
+        return ProyectoBD.getByCods(p);
+    }
+    
     public static ArrayList getByNombre(Proyecto p) throws Exception{
         return ProyectoBD.getByNombre(p);
+    }
+    
+    public static ArrayList getByCiudad(Proyecto p) throws Exception{
+        return ProyectoBD.getByCiudad(p);
     }
     
     public static boolean insert(Proyecto p) throws Exception{

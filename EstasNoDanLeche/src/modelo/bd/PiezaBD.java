@@ -40,6 +40,21 @@ public class PiezaBD extends ConexionBD{
         return p2;
     }
     
+     public static ArrayList getByCods(Pieza p) throws SQLException, Exception{
+        connect();
+        
+        String query = "SELECT * FROM PIEZA WHERE COD_PIE = ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, p.getId());
+        
+        rs = sentenciaCon.executeQuery();
+        
+         ArrayList lista = convertirAArray(rs, "PIEZA");
+        
+        disconnect();
+        return lista;
+    }
+    
     public static ArrayList getByNombre(Pieza p) throws SQLException, Exception{
         //Puede haber dos nombres iguales por lo que retorno una lista 
         //con todos los que tengan ese nombre

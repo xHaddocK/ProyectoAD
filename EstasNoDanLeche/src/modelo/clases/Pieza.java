@@ -27,6 +27,10 @@ public class Pieza {
         return PiezaBD.getByCod(p);
     }
     
+    public static ArrayList getByCods(Pieza p) throws Exception{
+        return PiezaBD.getByCods(p);
+    }
+    
     public static ArrayList getByNombre(Pieza p) throws Exception{
         return PiezaBD.getByNombre(p);
     }

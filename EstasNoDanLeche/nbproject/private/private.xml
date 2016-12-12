@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/ProveedorBD.java</file>
-            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/Home.java</file>
-            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/clases/Proveedor.java</file>
-            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProvNombre.java</file>
-            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProvDir.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProyectoNombre.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/ProyectoBD.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProyectoCiudad.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/clases/Proyecto.java</file>
         </group>
     </open-files>
 </project-private>
