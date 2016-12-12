@@ -330,7 +330,12 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        GestionRelaciones instancia=new GestionRelaciones();
+        GestionRelaciones instancia = null;
+        try {
+            instancia = new GestionRelaciones();
+        } catch (Exception ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
         instancia.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
