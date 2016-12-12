@@ -31,7 +31,11 @@ public class Pieza {
         return PiezaBD.getByCodLike(p);
     }
     
-    public static ArrayList getByNombre(Pieza p) throws Exception{
+    public static ArrayList getByNombreLike(Pieza p) throws Exception{
+        return PiezaBD.getByNombreLike(p);
+    }
+    
+    public static Pieza getByNombre(Pieza p) throws Exception{
         return PiezaBD.getByNombre(p);
     }
     

@@ -160,11 +160,11 @@ public static ArrayList<Proyecto> piezasList = new ArrayList<Proyecto>();
         Proyecto p = new Proyecto();
         p.setNombre(nombreSeleccionado);
         try {
-            piezasList = Proyecto.getByNombre(p);
+            piezasList = Proyecto.getByNombreLike(p);
             completarComboProveedoresRecibidos(piezasList);
         } catch (Exception ex) {
-            Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "No existe ningún proveedor con ese código");
+//            Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(this, "No existe ningún proveedor con ese código");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -172,9 +172,9 @@ public static ArrayList<Proyecto> piezasList = new ArrayList<Proyecto>();
         Proyecto p = new Proyecto();
         Proyecto p2 = new Proyecto();
 
-        p.setId(jComboBox1.getSelectedItem().toString());
+        p.setNombre(jComboBox1.getSelectedItem().toString());
         try {
-            p2= ProyectoBD.getByCod(p);
+            p2= ProyectoBD.getByNombre(p);
         } catch (Exception ex) {
             Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -195,7 +195,7 @@ public static ArrayList<Proyecto> piezasList = new ArrayList<Proyecto>();
         
         for (Object proveedor : lista) {
             p=(Proyecto) proveedor;
-           jComboBox1.addItem(p.getId()); 
+           jComboBox1.addItem(p.getNombre()); 
         }
      }
     public static void main(String args[]) {

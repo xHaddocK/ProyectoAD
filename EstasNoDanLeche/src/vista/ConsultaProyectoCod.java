@@ -154,11 +154,11 @@ public static ArrayList<Proyecto> proyectosList = new ArrayList<Proyecto>();
         Proyecto p = new Proyecto();
         p.setId(nombreSeleccionado);
         try {
-            //proyectosList = Proyecto.getByCods(p);
+            proyectosList = Proyecto.getByCodLike(p);
             completarDatosProveedorRecibidos(proyectosList);
         } catch (Exception ex) {
-            Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Error");
+//            Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(this, "Error");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

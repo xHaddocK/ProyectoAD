@@ -173,11 +173,11 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
         Pieza p = new Pieza();
         p.setId(nombreSeleccionado);
         try {
-            //piezasList = Pieza.getByCods(p);
+            piezasList = Pieza.getByCodLike(p);
             completarDatosProveedorRecibidos(piezasList);
         } catch (Exception ex) {
-            Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Error");
+//            Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(this, "Error");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

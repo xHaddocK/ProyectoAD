@@ -158,11 +158,11 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         Proveedor p = new Proveedor();
         p.setNombre(nombreSeleccionado);
         try {
-            proveedoresList = Proveedor.getByNombre(p);
+            proveedoresList = Proveedor.getByNombreLike(p);
             completarComboProveedoresRecibidos(proveedoresList);
         } catch (Exception ex) {
-             Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "No existe ningún proveedor con ese código");
+//             Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(this, "No existe ningún proveedor con ese código");
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -171,9 +171,9 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
          Proveedor p = new Proveedor();
            Proveedor p2 = new Proveedor();
        
-       p.setId(jComboBox1.getSelectedItem().toString());
+       p.setNombre(jComboBox1.getSelectedItem().toString());
     try {
-       p2= ProveedorBD.getByCod(p);
+       p2= ProveedorBD.getByNombre(p);
     } catch (Exception ex) {
         Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -195,7 +195,7 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         
         for (Object proveedor : lista) {
             p=(Proveedor) proveedor;
-           jComboBox1.addItem(p.getId()); 
+           jComboBox1.addItem(p.getNombre()); 
         }
        
         

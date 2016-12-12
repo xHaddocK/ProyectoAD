@@ -55,7 +55,22 @@ public class ProveedorBD extends ConexionBD{
         return lista;
     }
     
-    public static ArrayList getByNombre(Proveedor p) throws SQLException, Exception{
+    public static Proveedor getByNombre(Proveedor p) throws SQLException, Exception{
+        connect();
+        
+        String query = "SELECT * FROM PROVEEDOR WHERE NOMBRE LIKE ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1,p.getNombre());
+        
+        rs = sentenciaCon.executeQuery();
+        
+        Proveedor p2 = (Proveedor) convertirAObjeto(rs, "PROVEEDOR");
+        
+        disconnect();
+        return p2;
+    }
+    
+    public static ArrayList getByNombreLike(Proveedor p) throws SQLException, Exception{
         connect();
         
         String query = "SELECT * FROM PROVEEDOR WHERE NOMBRE LIKE ?;";
@@ -70,7 +85,7 @@ public class ProveedorBD extends ConexionBD{
         return lista;
     }
     
-    public static ArrayList getByDireccion(Proveedor p) throws Exception{
+    public static ArrayList getByDireccionLike(Proveedor p) throws Exception{
         connect();
         
         String query = "SELECT * FROM PROVEEDOR WHERE DIRECCION LIKE ?;";
@@ -82,6 +97,20 @@ public class ProveedorBD extends ConexionBD{
        
         disconnect();
         return lista;
+    }
+    
+    public static Proveedor getByDireccion(Proveedor p) throws Exception{
+        connect();
+        
+        String query = "SELECT * FROM PROVEEDOR WHERE DIRECCION LIKE ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1,p.getDireccion());
+        
+        rs = sentenciaCon.executeQuery();
+       Proveedor p2 = (Proveedor) convertirAObjeto(rs, "PROVEEDOR");
+       
+        disconnect();
+        return p2;
     }
     
     public static boolean insert(Proveedor p) throws Exception{

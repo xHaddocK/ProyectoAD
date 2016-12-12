@@ -156,10 +156,10 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         Proveedor p = new Proveedor();
         p.setDireccion(nombreSeleccionado);
         try {
-            proveedoresList = Proveedor.getByDireccion(p);
+            proveedoresList = Proveedor.getByDireccionLike(p);
             completarDatosProveedorRecibidos(proveedoresList);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "No existe ningún proveedor con ese código");
+//            JOptionPane.showMessageDialog(this, "No existe ningún proveedor con ese código");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -167,9 +167,9 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
          Proveedor p = new Proveedor();
            Proveedor p2 = new Proveedor();
        
-       p.setId(jComboBox1.getSelectedItem().toString());
+       p.setDireccion(jComboBox1.getSelectedItem().toString());
     try {
-       p2= ProveedorBD.getByCod(p);
+       p2= ProveedorBD.getByDireccion(p);
     } catch (Exception ex) {
         Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -190,7 +190,7 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         
         for (Object proveedor : lista) {
             p=(Proveedor) proveedor;
-           jComboBox1.addItem(p.getId()); 
+           jComboBox1.addItem(p.getDireccion()); 
         }
         jComboBox1.repaint();
         

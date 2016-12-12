@@ -157,11 +157,11 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         Proveedor p = new Proveedor();
         p.setId(nombreSeleccionado);
         try {
-            //proveedoresList = Proveedor.getByCods(p);
+            proveedoresList = Proveedor.getByCodLike(p);
             completarDatosProveedorRecibidos(proveedoresList);
         } catch (Exception ex) {
-            Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Error");
+//            Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(this, "Error");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

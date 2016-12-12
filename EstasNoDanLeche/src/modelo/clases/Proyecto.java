@@ -29,11 +29,19 @@ public class Proyecto {
         return ProyectoBD.getByCodLike(p);
     }
     
-    public static ArrayList getByNombre(Proyecto p) throws Exception{
+    public static ArrayList getByNombreLike(Proyecto p) throws Exception{
+        return ProyectoBD.getByNombreLike(p);
+    }
+    
+     public static Proyecto getByNombre(Proyecto p) throws Exception{
         return ProyectoBD.getByNombre(p);
     }
     
-    public static ArrayList getByCiudad(Proyecto p) throws Exception{
+    public static ArrayList getByCiudadLike(Proyecto p) throws Exception{
+        return ProyectoBD.getByCiudadLike(p);
+    }
+    
+     public static Proyecto getByCiudad(Proyecto p) throws Exception{
         return ProyectoBD.getByCiudad(p);
     }
     

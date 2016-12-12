@@ -55,7 +55,7 @@ public class PiezaBD extends ConexionBD{
         return lista;
     }
     
-    public static ArrayList getByNombre(Pieza p) throws SQLException, Exception{
+    public static ArrayList getByNombreLike(Pieza p) throws SQLException, Exception{
         //Puede haber dos nombres iguales por lo que retorno una lista 
         //con todos los que tengan ese nombre
         connect();
@@ -70,6 +70,23 @@ public class PiezaBD extends ConexionBD{
         
         disconnect();
         return lista;
+    }
+    
+    public static Pieza getByNombre(Pieza p) throws SQLException, Exception{
+        //Puede haber dos nombres iguales por lo que retorno una lista 
+        //con todos los que tengan ese nombre
+        connect();
+        
+        String query = "SELECT * FROM PIEZA WHERE NOMBRE LIKE ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, "%" + p.getNombre() + "%");
+        
+        rs = sentenciaCon.executeQuery();
+        
+        Pieza p2 = (Pieza) convertirAObjeto(rs, "PIEZA");
+        
+        disconnect();
+        return p2;
     }
     
     public static boolean insert(Pieza p) throws Exception{
