@@ -40,16 +40,16 @@ public class PiezaBD extends ConexionBD{
         return p2;
     }
     
-     public static ArrayList getByCods(Pieza p) throws SQLException, Exception{
+    public static ArrayList getByCodLike(Pieza p) throws Exception{
         connect();
         
-        String query = "SELECT * FROM PIEZA WHERE COD_PIE = ?;";
+        String query = "SELECT * FROM PIEZA WHERE COD_PIE LIKE ?";
         sentenciaCon = getConnection().prepareStatement(query);
-        sentenciaCon.setString(1, p.getId());
+        sentenciaCon.setString(1,"%" + p.getId() + "%");
         
         rs = sentenciaCon.executeQuery();
         
-         ArrayList lista = convertirAArray(rs, "PIEZA");
+        ArrayList<Pieza>lista = convertirAArray(rs, "PIEZA");
         
         disconnect();
         return lista;
@@ -60,9 +60,9 @@ public class PiezaBD extends ConexionBD{
         //con todos los que tengan ese nombre
         connect();
         
-        String query = "SELECT * FROM PIEZA WHERE NOMBRE = ?;";
+        String query = "SELECT * FROM PIEZA WHERE NOMBRE LIKE ?;";
         sentenciaCon = getConnection().prepareStatement(query);
-        sentenciaCon.setString(1, p.getNombre());
+        sentenciaCon.setString(1, "%" + p.getNombre() + "%");
         
         rs = sentenciaCon.executeQuery();
         

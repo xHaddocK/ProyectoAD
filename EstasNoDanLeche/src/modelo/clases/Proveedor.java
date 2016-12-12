@@ -26,16 +26,16 @@ public class Proveedor {
         return ProveedorBD.getByCod(p);
     }
     
-     public static ArrayList getByCods(Proveedor p) throws Exception{
-        return ProveedorBD.getByCods(p);
-    }
-    
-     public static ArrayList getByDir(Proveedor p) throws Exception{
-        return ProveedorBD.getByDir(p);
+    public static ArrayList getByCodLike(Proveedor p) throws Exception{
+        return ProveedorBD.getByCodLike(p);
     }
     
     public static ArrayList getByNombre(Proveedor p) throws Exception{
         return ProveedorBD.getByNombre(p);
+    }
+    
+    public static ArrayList getByDireccion(Proveedor p) throws Exception{
+        return ProveedorBD.getByDireccion(p);
     }
     
     public static boolean insert(Proveedor p) throws Exception{

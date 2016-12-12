@@ -40,49 +40,46 @@ public class ProveedorBD extends ConexionBD{
         return p2;
     }
     
-    public static ArrayList getByCods(Proveedor p) throws SQLException, Exception{
+    public static ArrayList getByCodLike(Proveedor p) throws Exception{
         connect();
         
-        String query = "SELECT * FROM PROVEEDOR WHERE COD_PROV = ?;";
+        String query = "SELECT * FROM PROVEEDOR WHERE COD_PROV LIKE ?";
         sentenciaCon = getConnection().prepareStatement(query);
-        sentenciaCon.setString(1, p.getId());
+        sentenciaCon.setString(1,"%" + p.getId() + "%");
         
         rs = sentenciaCon.executeQuery();
         
-        ArrayList lista =  convertirAArray(rs, "PROVEEDOR");
-        
-        disconnect();
-        return lista;
-    }
-    
-    public static ArrayList getByDir(Proveedor p) throws SQLException, Exception{
-        connect();
-        
-        String query = "SELECT * FROM PROVEEDOR WHERE DIRECCION = ?;";
-        sentenciaCon = getConnection().prepareStatement(query);
-        sentenciaCon.setString(1, p.getDireccion());
-        
-        rs = sentenciaCon.executeQuery();
-        
-        ArrayList lista =  convertirAArray(rs, "PROVEEDOR");
+        ArrayList<Proveedor>lista = convertirAArray(rs, "PROVEEDOR");
         
         disconnect();
         return lista;
     }
     
     public static ArrayList getByNombre(Proveedor p) throws SQLException, Exception{
-        //Puede haber dos nombres iguales por lo que retorno una lista
-        //con todos los que tengan ese nombre
         connect();
         
-        String query = "SELECT * FROM PROVEEDOR WHERE NOMBRE = ?;";
+        String query = "SELECT * FROM PROVEEDOR WHERE NOMBRE LIKE ?;";
         sentenciaCon = getConnection().prepareStatement(query);
-        sentenciaCon.setString(1, p.getNombre());
+        sentenciaCon.setString(1, "%" + p.getNombre() + "%");
         
         rs = sentenciaCon.executeQuery();
-        ArrayList lista =  convertirAArray(rs, "PROVEEDOR");
-       
         
+        ArrayList<Proveedor>lista = convertirAArray(rs, "PROVEEDOR");
+        
+        disconnect();
+        return lista;
+    }
+    
+    public static ArrayList getByDireccion(Proveedor p) throws Exception{
+        connect();
+        
+        String query = "SELECT * FROM PROVEEDOR WHERE DIRECCION LIKE ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, "%" + p.getDireccion() + "%");
+        
+        rs = sentenciaCon.executeQuery();
+        ArrayList<Proveedor>lista = convertirAArray(rs, "PROVEEDOR");
+       
         disconnect();
         return lista;
     }

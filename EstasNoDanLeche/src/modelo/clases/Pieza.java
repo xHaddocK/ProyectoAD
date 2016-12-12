@@ -27,8 +27,8 @@ public class Pieza {
         return PiezaBD.getByCod(p);
     }
     
-    public static ArrayList getByCods(Pieza p) throws Exception{
-        return PiezaBD.getByCods(p);
+    public static ArrayList getByCodLike(Pieza p) throws Exception{
+        return PiezaBD.getByCodLike(p);
     }
     
     public static ArrayList getByNombre(Pieza p) throws Exception{

@@ -156,7 +156,7 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         Proveedor p = new Proveedor();
         p.setDireccion(nombreSeleccionado);
         try {
-            proveedoresList = Proveedor.getByDir(p);
+            proveedoresList = Proveedor.getByDireccion(p);
             completarDatosProveedorRecibidos(proveedoresList);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "No existe ningún proveedor con ese código");

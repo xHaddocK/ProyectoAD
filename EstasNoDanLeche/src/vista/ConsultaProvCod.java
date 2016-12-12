@@ -157,7 +157,7 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         Proveedor p = new Proveedor();
         p.setId(nombreSeleccionado);
         try {
-            proveedoresList = Proveedor.getByCods(p);
+            //proveedoresList = Proveedor.getByCods(p);
             completarDatosProveedorRecibidos(proveedoresList);
         } catch (Exception ex) {
             Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);

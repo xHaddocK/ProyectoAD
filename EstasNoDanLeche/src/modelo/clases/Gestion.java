@@ -21,8 +21,12 @@ public class Gestion {
 
 //BD METHODS
     
+    public static boolean insert(Gestion g) throws Exception{
+        return GestionBD.insert(g);
+    }
+    
     //Obtener las piezas suministradas por proveedor, devuelve -1 si hay algun error
-    public static int piezasByProv(Proveedor p) throws Exception{
+    public static ArrayList piezasByProv(Proveedor p) throws Exception{
         return GestionBD.piezasByProv(p);
     }
 
@@ -60,14 +64,14 @@ public class Gestion {
     }
     
     //PROVEEDOR QUE HA SUMINISTRADO A MÁS PROYECTOS, Y NÚMERO DE PROYECTOS 
-        //Arraylist posicion 0 el proveedor, posición 1 un int con la cantidad de proyectos
-    public static ArrayList provMaxProyYCant() throws Exception{
+        //Array de Object, 0 es un proveedor, el 1 un objeto Integer
+    public static Object[] provMaxProyYCant() throws Exception{
         return GestionBD.provMaxProyYCant();
     }
     
     //PROVEEDOR QUE HA SUMINISTRADO MAS PIEZAS Y NÚMERO DE PIEZAS
         //Arraylist posicion 0 el proveedor, posicion 1 un int con la CANTIDAD de piezas
-    public static ArrayList provMaxPiezasYCant() throws Exception{
+    public static Object[] provMaxPiezasYCant() throws Exception{
         return GestionBD.provMaxPiezasYCant();
     }
     

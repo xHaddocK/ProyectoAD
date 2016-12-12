@@ -173,7 +173,7 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
         Pieza p = new Pieza();
         p.setId(nombreSeleccionado);
         try {
-            piezasList = Pieza.getByCods(p);
+            //piezasList = Pieza.getByCods(p);
             completarDatosProveedorRecibidos(piezasList);
         } catch (Exception ex) {
             Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);

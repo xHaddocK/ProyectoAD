@@ -13,20 +13,27 @@ public class GestionBD extends ConexionBD{
     private static PreparedStatement sentenciaCon; //Consultas con parametros introducidos
     private static ResultSet rs;
     
-    //Ejemplo
-    public static ArrayList getAll() throws Exception{
+    public static boolean insert(Gestion g) throws Exception{
         connect();
         
-        sentenciaSin = getConnection().createStatement();
-        rs = sentenciaSin.executeQuery("SELECT * FROM PIEZA;");
+        String query = "INSERT INTO `proyectoad`.`gestion` (`COD_PROV`, `COD_PIE`, `COD_PROY`, `CANTIDAD`) VALUES (?, ?, ?, ?);";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, g.getProv().getId());
+        sentenciaCon.setString(2, g.getPieza().getId());
+        sentenciaCon.setString(3, g.getProy().getId());
+        sentenciaCon.setInt(4, g.getCantidad());
         
-        ArrayList lista = convertirAArray(rs, "PIEZA");
-        
-        disconnect();
-        return lista;
+        if(sentenciaCon.executeUpdate() > 0){
+            disconnect();
+            return true;
+        }
+        else{
+            disconnect();
+            return false;
+        }
     }
     
-    public static int piezasByProv(Proveedor p) throws Exception{
+    public static ArrayList piezasByProv(Proveedor p) throws Exception{
         connect();
         
         String query = "SELECT A.COD_PIE, A.NOMBRE, A.PRECIO, A.DESCRIPCION\n" +
@@ -38,15 +45,9 @@ public class GestionBD extends ConexionBD{
         
         rs = sentenciaCon.executeQuery();
         
-        if(rs.next()){
-            int num = Integer.parseInt(rs.getString(1));
-            disconnect();
-            return num;
-        }
-        else{
-            disconnect();
-            return -1;
-        } 
+        ArrayList lista = convertirAArray(rs, "PIEZA");
+        
+        return lista;
     }
     
     public static ArrayList piezasToProv() throws Exception{
@@ -193,7 +194,7 @@ public class GestionBD extends ConexionBD{
         return p;
     }
     
-    public static ArrayList provMaxProyYCant() throws Exception{
+    public static Object[] provMaxProyYCant() throws Exception{
         connect();
         
         String query = "SELECT A.COD_PROV, A.NOMBRE, A.APELLIDOS, A.DIRECCION, COUNT(DISTINCT(B.COD_PROY)) AS CONTADOR\n" +
@@ -215,21 +216,26 @@ public class GestionBD extends ConexionBD{
         //Tratamiento de datos
         if(rs.next()){
             Proveedor p = new Proveedor(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
-            int num = rs.getInt(5);
-            ArrayList al = new ArrayList();
-            al.add(p);
-            al.add(num);
+            
+            Object[]list = new Object[2];
+            list[0] = p;
+            list[1] = rs.getInt(5);
             
             disconnect();
-            return al;
+            return list;
         }
         else{
+            Object[]list = new Object[2];
+            list[0] = new Proveedor();
+            list[1] = -1;
+            
             disconnect();
-            return null;
+            return list;
         }
     }
     
-    public static ArrayList provMaxPiezasYCant() throws Exception{
+    //Esto de momento está to mal niggi
+    public static Object[] provMaxPiezasYCant() throws Exception{
         connect();
         
         String query = "SELECT A.COD_PROV, A.NOMBRE, A.APELLIDOS, A.DIRECCION, SUM(B.CANTIDAD) AS CONTADOR\n" +
@@ -252,14 +258,18 @@ public class GestionBD extends ConexionBD{
         if(rs.next()){
             Proveedor p = new Proveedor(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
             int num = rs.getInt(5);
-            ArrayList al = new ArrayList();
-            al.add(p);
-            al.add(num);
+            Object[]lista = new Object[2];
+            lista[0] = p;
+            lista[1] = num;
             
             disconnect();
-            return al;
+            return lista;
         }
         else{
+            Object[]lista = new Object[2];
+            lista[0] = new Proveedor();
+            lista[1] = -1;
+            
             disconnect();
             return null;
         }

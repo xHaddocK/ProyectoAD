@@ -25,8 +25,8 @@ public class Proyecto {
         return ProyectoBD.getByCod(p);
     }
     
-     public static ArrayList getByCods(Proyecto p) throws Exception{
-        return ProyectoBD.getByCods(p);
+    public static ArrayList getByCodLike(Proyecto p) throws Exception{
+        return ProyectoBD.getByCodLike(p);
     }
     
     public static ArrayList getByNombre(Proyecto p) throws Exception{

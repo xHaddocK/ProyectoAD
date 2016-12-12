@@ -34,55 +34,55 @@ public class ProyectoBD extends ConexionBD{
         
         rs = sentenciaCon.executeQuery();
         
+        //Si no existe devuelve un objeto vacío
         Proyecto p2 = (Proyecto) convertirAObjeto(rs, "PROYECTO");
         
         disconnect();
         return p2;
     }
     
-     public static ArrayList getByCods(Proyecto p) throws SQLException, Exception{
+    public static ArrayList getByCodLike(Proyecto p) throws Exception{
         connect();
         
-        String query = "SELECT * FROM PROYECTO WHERE COD_PROY = ?;";
+        String query = "SELECT * FROM PROYECTO WHERE COD_PROY LIKE ?";
         sentenciaCon = getConnection().prepareStatement(query);
-        sentenciaCon.setString(1, p.getId());
+        sentenciaCon.setString(1,"%" + p.getId() + "%");
         
         rs = sentenciaCon.executeQuery();
         
-        ArrayList lista = convertirAArray(rs, "PROYECTO");
+        ArrayList<Proyecto>lista = convertirAArray(rs, "PROYECTO");
         
         disconnect();
         return lista;
     }
     
     public static ArrayList getByNombre(Proyecto p) throws SQLException, Exception{
-        //Puede haber dos nombres iguales por lo que retorno una lista
-        //con todos los que tengan ese nombre
         connect();
         
-        String query = "SELECT * FROM PROYECTO WHERE NOMBRE = ?;";
+        String query = "SELECT * FROM PROYECTO WHERE NOMBRE LIKE ?;";
         sentenciaCon = getConnection().prepareStatement(query);
-        sentenciaCon.setString(1, p.getNombre());
+        sentenciaCon.setString(1, "%" + p.getNombre() + "%");
+        
         
         rs = sentenciaCon.executeQuery();
         
+        //Puede devolver lista vacía, en cuyo caso será que no hay ningun proyecto con ese nombre
         ArrayList lista = convertirAArray(rs, "PROYECTO");
         
         disconnect();
         return lista;
     }
     
-    public static ArrayList getByCiudad(Proyecto p) throws SQLException, Exception{
-        //Puede haber dos nombres iguales por lo que retorno una lista
-        //con todos los que tengan ese nombre
+    public static ArrayList getByCiudad(Proyecto p) throws Exception{
         connect();
         
-        String query = "SELECT * FROM PROYECTO WHERE CIUDAD = ?;";
+        String query = "SELECT * FROM PROYECTO WHERE CIUDAD LIKE ?;";
         sentenciaCon = getConnection().prepareStatement(query);
-        sentenciaCon.setString(1, p.getNombre());
+        sentenciaCon.setString(1, "%" + p.getCiudad() + "%");
         
         rs = sentenciaCon.executeQuery();
         
+        //Puede devolver lista vacía, en cuyo caso será que no hay ningun proyecto con esa ciudad
         ArrayList lista = convertirAArray(rs, "PROYECTO");
         
         disconnect();

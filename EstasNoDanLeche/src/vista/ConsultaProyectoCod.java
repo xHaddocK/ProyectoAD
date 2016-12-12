@@ -154,7 +154,7 @@ public static ArrayList<Proyecto> proyectosList = new ArrayList<Proyecto>();
         Proyecto p = new Proyecto();
         p.setId(nombreSeleccionado);
         try {
-            proyectosList = Proyecto.getByCods(p);
+            //proyectosList = Proyecto.getByCods(p);
             completarDatosProveedorRecibidos(proyectosList);
         } catch (Exception ex) {
             Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
