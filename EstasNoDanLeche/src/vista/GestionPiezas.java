@@ -82,9 +82,15 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
 
         jLabel2.setText("Código de Pieza");
 
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextField1MouseExited(evt);
+            }
+        });
+
         jLabel3.setText("Nombre");
 
-        jLabel4.setText("Apellidos");
+        jLabel4.setText("Descripción");
 
         jButton1.setText("Limpiar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -355,7 +361,7 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("");
@@ -439,7 +445,7 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
      result = strOut.substring(0,20);
      piezaToInsert.setNombre(result);
         } else{
-            piezaToInsert.setNombre(jTextField2.getText().toUpperCase());
+            piezaToInsert.setNombre(jTextField2.getText());
         }
             piezaToInsert.setDescripcion(jTextField3.getText().toUpperCase());
         
@@ -531,6 +537,20 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
             Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseExited
+        Pieza p = new Pieza();
+        p.setId(jTextField1.getText().toUpperCase());
+        try {
+            p = PiezaBD.getByCod(p);
+            jTextField2.setText(p.getNombre());
+            jTextField3.setText(p.getDescripcion());
+            jTextField4.setText(String.valueOf(p.getPrecio()));
+
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField1MouseExited
 
     /**
      * @param args the command line arguments

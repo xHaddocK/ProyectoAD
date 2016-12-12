@@ -85,6 +85,17 @@ public class GestionProveedores extends javax.swing.JFrame {
 
         jLabel2.setText("Código de Proveedor");
 
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextField1MouseExited(evt);
+            }
+        });
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Nombre");
 
         jLabel4.setText("Apellidos");
@@ -434,37 +445,35 @@ public class GestionProveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         String strOut = "";
+        String strOut = "";
         String result;
         Proveedor proveedorToInsert = new Proveedor();
         proveedorToInsert.setId(jTextField1.getText().toUpperCase());
-        
-         if(jTextField2.getText().length() > 20){
-            strOut=jTextField2.getText();
-     result = strOut.substring(0,20);
-     proveedorToInsert.setNombre(result);
-        } else{
+
+        if (jTextField2.getText().length() > 20) {
+            strOut = jTextField2.getText();
+            result = strOut.substring(0, 20);
+            proveedorToInsert.setNombre(result);
+        } else {
             proveedorToInsert.setNombre(jTextField2.getText());
         }
-         
-         if(jTextField3.getText().length() > 30){
-            strOut=jTextField3.getText();
-     result = strOut.substring(0,30);
-     proveedorToInsert.setNombre(result);
-        } else{
+
+        if (jTextField3.getText().length() > 30) {
+            strOut = jTextField3.getText();
+            result = strOut.substring(0, 30);
+            proveedorToInsert.setNombre(result);
+        } else {
             proveedorToInsert.setApellido(jTextField3.getText());
         }
-         
-          if(jTextField4.getText().length() > 40){
-            strOut=jTextField4.getText();
-     result = strOut.substring(0,40);
-     proveedorToInsert.setDireccion(result);
-        } else{
-             proveedorToInsert.setDireccion(jTextField4.getText());
+
+        if (jTextField4.getText().length() > 40) {
+            strOut = jTextField4.getText();
+            result = strOut.substring(0, 40);
+            proveedorToInsert.setDireccion(result);
+        } else {
+            proveedorToInsert.setDireccion(jTextField4.getText());
         }
-        
-       
-       
+
         try {
             if (proveedorToInsert.getId().length() > 6) {
                 JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
@@ -544,6 +553,24 @@ public class GestionProveedores extends javax.swing.JFrame {
             Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseExited
+        Proveedor p = new Proveedor();
+        p.setId(jTextField1.getText().toUpperCase());
+        try {
+            p = ProveedorBD.getByCod(p);
+            jTextField2.setText(p.getNombre());
+            jTextField3.setText(p.getApellido());
+            jTextField4.setText(p.getDireccion());
+
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField1MouseExited
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments

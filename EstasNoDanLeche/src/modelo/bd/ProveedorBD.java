@@ -40,6 +40,21 @@ public class ProveedorBD extends ConexionBD{
         return p2;
     }
     
+    public static ArrayList getByDir(Proveedor p) throws SQLException, Exception{
+        connect();
+        
+        String query = "SELECT * FROM PROVEEDOR WHERE DIRECCION = ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, p.getDireccion());
+        
+        rs = sentenciaCon.executeQuery();
+        
+        ArrayList lista =  convertirAArray(rs, "PROVEEDOR");
+        
+        disconnect();
+        return lista;
+    }
+    
     public static ArrayList getByNombre(Proveedor p) throws SQLException, Exception{
         //Puede haber dos nombres iguales por lo que retorno una lista
         //con todos los que tengan ese nombre

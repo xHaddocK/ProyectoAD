@@ -26,6 +26,10 @@ public class Proveedor {
         return ProveedorBD.getByCod(p);
     }
     
+     public static ArrayList getByDir(Proveedor p) throws Exception{
+        return ProveedorBD.getByDir(p);
+    }
+    
     public static ArrayList getByNombre(Proveedor p) throws Exception{
         return ProveedorBD.getByNombre(p);
     }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.bd.ProveedorBD;
 import modelo.clases.Proveedor;
 import static vista.ConsultaProvCod.proveedoresList;
 
@@ -18,12 +19,13 @@ import static vista.ConsultaProvCod.proveedoresList;
  */
 public class ConsultaProvNombre extends javax.swing.JFrame {
 public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
+
     /**
      * Creates new form ConsultaProvNombre
      */
     public ConsultaProvNombre() throws Exception {
         initComponents();
-        cargarDatoscombo();
+        
     }
 
     /**
@@ -67,11 +69,6 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
 
         jLabel5.setText("DIRECCIÓN:");
 
-        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox1ItemStateChanged(evt);
-            }
-        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -155,18 +152,29 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE); 
     }//GEN-LAST:event_formWindowClosing
 
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        jTextField1.setText(jComboBox1.getSelectedItem().toString());
-    }//GEN-LAST:event_jComboBox1ItemStateChanged
-
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+       Proveedor p = new Proveedor();
+           Proveedor p2 = new Proveedor();
+       
+       p.setId(jComboBox1.getSelectedItem().toString());
+    try {
+       p2= ProveedorBD.getByCod(p);
+    } catch (Exception ex) {
+        Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
+    }
+      
+       
+                jLabel6.setText(p2.getNombre());
+        jLabel7.setText(p2.getId());
+        jLabel8.setText(p2.getApellido());
+        jLabel9.setText(p2.getDireccion());
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String codigoSeleccionado = jTextField1.getText();
+        String nombreSeleccionado = jTextField1.getText();
         Proveedor p = new Proveedor();
-        p.setId(codigoSeleccionado);
+        p.setNombre(nombreSeleccionado);
         try {
             proveedoresList = Proveedor.getByNombre(p);
             completarComboProveedoresRecibidos(proveedoresList);
@@ -182,25 +190,23 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
     public void completarComboProveedoresRecibidos(ArrayList lista) {
         jComboBox1.removeAllItems();
         Proveedor p;
+        
         for (Object proveedor : lista) {
             p=(Proveedor) proveedor;
            jComboBox1.addItem(p.getId()); 
         }
         jComboBox1.repaint();
         
-//        jLabel6.setText(p.getId());
-//        jLabel7.setText(p.getNombre());
-//        jLabel8.setText(p.getApellido());
-//        jLabel9.setText(p.getDireccion());
+
         
     }
     
-    public void cargarDatoscombo() throws Exception{
-    proveedoresList = Proveedor.getAll();
-    for(Proveedor p:proveedoresList){
-        jComboBox1.addItem(p.getNombre());
-    }
-    }
+//    public void cargarDatoscombo() throws Exception{
+//    proveedoresList = Proveedor.getAll();
+//    for(Proveedor p:proveedoresList){
+//        jComboBox1.addItem(p.getNombre());
+//    }
+//    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

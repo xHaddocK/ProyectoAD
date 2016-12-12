@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.bd.ProyectoBD;
 import modelo.clases.Proyecto;
 
 /**
@@ -39,7 +40,6 @@ public class GestionProyectos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -48,6 +48,7 @@ public class GestionProyectos extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -82,12 +83,38 @@ public class GestionProyectos extends javax.swing.JFrame {
         jLabel4.setText("Ciudad");
 
         jButton1.setText("Limpiar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Insertar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Modificar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Eliminar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextField1MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -112,9 +139,9 @@ public class GestionProyectos extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(208, 208, 208)
+                        .addGap(209, 209, 209)
                         .addComponent(jButton1)
                         .addGap(37, 37, 37)
                         .addComponent(jButton2)
@@ -122,7 +149,7 @@ public class GestionProyectos extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addGap(46, 46, 46)
                         .addComponent(jButton4)))
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,13 +168,13 @@ public class GestionProyectos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(102, 102, 102)
+                .addGap(98, 98, 98)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Gestión de Proyectos", jPanel1);
@@ -370,6 +397,132 @@ public class GestionProyectos extends javax.swing.JFrame {
         jTextField7.setText(p.getCiudad());
 
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String strOut = "";
+        String result;
+        Proyecto proyectoToInsert = new Proyecto();
+
+        proyectoToInsert.setId(jTextField1.getText().toUpperCase());
+
+        if(jTextField2.getText().length() > 40){
+            strOut=jTextField2.getText();
+            result = strOut.substring(0,40);
+            proyectoToInsert.setNombre(result);
+        } else{
+            proyectoToInsert.setNombre(jTextField2.getText());
+        }
+        
+        if(jTextField3.getText().length() > 40){
+            strOut=jTextField3.getText();
+            result = strOut.substring(0,40);
+            proyectoToInsert.setCiudad(result);
+        } else{
+            proyectoToInsert.setCiudad(jTextField3.getText());
+        }
+       
+
+        
+
+        try {
+            if (proyectoToInsert.getId().length() > 6) {
+                JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
+            } else {
+                ProyectoBD.insert(proyectoToInsert);
+                JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
+            }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al insertar el campo");
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Proyecto proyectoToUpdate = new Proyecto();
+        proyectoToUpdate.setId(jTextField1.getText().toUpperCase());
+        proyectoToUpdate.setNombre(jTextField2.getText());
+        proyectoToUpdate.setCiudad(jTextField3.getText());
+        
+        Proyecto comprobarExistencia = null;
+        try {
+            comprobarExistencia = ProyectoBD.getByCod(proyectoToUpdate);
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            if (comprobarExistencia.getId() != null) {
+                try {
+                    if (proyectoToUpdate.getId().length() > 6) {
+                        JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
+                    } else {
+                        ProyectoBD.update(proyectoToUpdate);
+                        JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
+                    }
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error al actualizar el campo");
+                    Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No existe un registro con ese código");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Proyecto proyectoToDelete = new Proyecto();
+        proyectoToDelete.setId(jTextField1.getText().toUpperCase());
+        Proyecto comprobarExistencia = null;
+        try {
+            comprobarExistencia = ProyectoBD.getByCod(proyectoToDelete);
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            if (comprobarExistencia.getId() != null) {
+                try {
+                    if (proyectoToDelete.getId().length() > 6) {
+                        JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
+                    } else {
+                        ProyectoBD.delete(proyectoToDelete);
+                        JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
+                    }
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error al eliminar el campo");
+                    Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No existe un registro con ese código");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseExited
+        Proyecto p = new Proyecto();
+        p.setId(jTextField1.getText().toUpperCase());
+        try {
+            p = ProyectoBD.getByCod(p);
+            jTextField2.setText(p.getNombre());
+            jTextField3.setText(p.getCiudad());
+            
+
+        } catch (Exception ex) {
+            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField1MouseExited
 
     /**
      * @param args the command line arguments
