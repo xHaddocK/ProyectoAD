@@ -180,7 +180,7 @@ public static ArrayList<Proyecto> piezasList = new ArrayList<Proyecto>();
 
         p.setNombre(jComboBox1.getSelectedItem().toString());
         try {
-            p2= ProyectoBD.getByNombre(p);
+            p2= (Proyecto) ProyectoBD.getByNombreLike(p).get(0);
         } catch (Exception ex) {
             Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
         }

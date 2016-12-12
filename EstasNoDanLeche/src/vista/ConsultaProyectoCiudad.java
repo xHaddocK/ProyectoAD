@@ -171,7 +171,7 @@ public static ArrayList<Proyecto> piezasList = new ArrayList<Proyecto>();
 
         p.setCiudad(jComboBox1.getSelectedItem().toString());
         try {
-            p2= ProyectoBD.getByCiudad(p);
+            p2= (Proyecto) ProyectoBD.getByCiudadLike(p).get(0);
         } catch (Exception ex) {
             Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
         }

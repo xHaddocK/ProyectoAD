@@ -33,16 +33,8 @@ public class Proyecto {
         return ProyectoBD.getByNombreLike(p);
     }
     
-     public static Proyecto getByNombre(Proyecto p) throws Exception{
-        return ProyectoBD.getByNombre(p);
-    }
-    
     public static ArrayList getByCiudadLike(Proyecto p) throws Exception{
         return ProyectoBD.getByCiudadLike(p);
-    }
-    
-     public static Proyecto getByCiudad(Proyecto p) throws Exception{
-        return ProyectoBD.getByCiudad(p);
     }
     
     public static boolean insert(Proyecto p) throws Exception{

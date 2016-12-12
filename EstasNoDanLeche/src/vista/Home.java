@@ -340,8 +340,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        SuministrosProveedor instancia= new SuministrosProveedor();
-        instancia.setVisible(true);
+        //SuministrosProveedor instancia= new SuministrosProveedor();
+        //instancia.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed

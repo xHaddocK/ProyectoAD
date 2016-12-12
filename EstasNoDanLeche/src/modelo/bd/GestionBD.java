@@ -109,6 +109,52 @@ public class GestionBD extends ConexionBD{
         }
     }
     
+    public static int[] PiezasProyectosByProv(Proveedor p) throws Exception{
+        connect();
+        
+        String query = "SELECT COUNT(DISTINCT(COD_PIE)), COUNT(DISTINCT(COD_PROY))\n" +
+                        "FROM GESTION\n" +
+                        "WHERE COD_PROV = ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, p.getId());
+        rs = sentenciaCon.executeQuery(query);
+        
+        if(rs.next()){
+            int[]ret = {rs.getInt(1), rs.getInt(2)};
+            disconnect();
+            return ret;
+        }
+        else{
+            int[]ret = {-1,-1};
+            disconnect();
+            return ret;
+        }
+        
+    }
+    
+    public static int[] ProyProvCantByPieza(Pieza p) throws Exception{
+        connect();
+        
+        String query = "SELECT COUNT(DISTINCT(COD_PROY)), COUNT(DISTINCT(COD_PROV)), SUM(CANTIDAD)\n" +
+                        "FROM GESTION\n" +
+                        "WHERE COD_PIE = ?;";
+        
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, p.getId());
+        rs = sentenciaSin.executeQuery(query);
+        
+        if(rs.next()){
+            int[]ret = {rs.getInt(1), rs.getInt(2), rs.getInt(3)};
+            disconnect();
+            return ret;
+        }
+        else{
+            int[]ret = {-1,-1,-1};
+            disconnect();
+            return ret;
+        }
+    }
+    
     public static ArrayList piezasByProv(Proveedor p) throws Exception{
         connect();
         

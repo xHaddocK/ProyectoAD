@@ -73,23 +73,6 @@ public class ProyectoBD extends ConexionBD{
         return lista;
     }
     
-    public static Proyecto getByNombre(Proyecto p) throws SQLException, Exception{
-        connect();
-        
-        String query = "SELECT * FROM PROYECTO WHERE NOMBRE LIKE ?;";
-        sentenciaCon = getConnection().prepareStatement(query);
-        sentenciaCon.setString(1, p.getNombre());
-        
-        
-        rs = sentenciaCon.executeQuery();
-        
-        //Puede devolver lista vacía, en cuyo caso será que no hay ningun proyecto con ese nombre
-        Proyecto p2 = (Proyecto) convertirAObjeto(rs, "PROYECTO");
-        
-        disconnect();
-        return p2;
-    }
-    
     public static ArrayList getByCiudadLike(Proyecto p) throws Exception{
         connect();
         
@@ -104,22 +87,6 @@ public class ProyectoBD extends ConexionBD{
         
         disconnect();
         return lista;
-    }
-    
-    public static Proyecto getByCiudad(Proyecto p) throws Exception{
-        connect();
-        
-        String query = "SELECT * FROM PROYECTO WHERE CIUDAD LIKE ?;";
-        sentenciaCon = getConnection().prepareStatement(query);
-        sentenciaCon.setString(1,p.getCiudad());
-        
-        rs = sentenciaCon.executeQuery();
-        
-        //Puede devolver lista vacía, en cuyo caso será que no hay ningun proyecto con esa ciudad
-        Proyecto p2 = (Proyecto) convertirAObjeto(rs, "PROYECTO");
-        
-        disconnect();
-        return p2;
     }
     
     public static boolean insert(Proyecto p) throws Exception{

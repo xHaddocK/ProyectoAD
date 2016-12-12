@@ -35,10 +35,6 @@ public class Pieza {
         return PiezaBD.getByNombreLike(p);
     }
     
-    public static Pieza getByNombre(Pieza p) throws Exception{
-        return PiezaBD.getByNombre(p);
-    }
-    
     public static boolean insert(Pieza p) throws Exception{
         return PiezaBD.insert(p);
     }

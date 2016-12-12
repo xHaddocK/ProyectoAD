@@ -41,6 +41,16 @@ public class Gestion {
         return GestionBD.delete(g);
     }
     
+    //[0] piezas, [1] proyectos
+    public static int[] PiezasProyectosByProv(Proveedor p) throws Exception{
+        return GestionBD.PiezasProyectosByProv(p);
+    }
+    
+    //[0] proyectos, [1] proveedores y [2] Cantidad
+    public static int[] ProyProvCantByPieza(Pieza p) throws Exception{
+        return GestionBD.ProyProvCantByPieza(p);
+    }
+    
     //Obtener las piezas suministradas por proveedor, devuelve -1 si hay algun error
     public static ArrayList piezasByProv(Proveedor p) throws Exception{
         return GestionBD.piezasByProv(p);

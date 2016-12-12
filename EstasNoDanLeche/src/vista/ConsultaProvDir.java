@@ -177,7 +177,7 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
        
        p.setDireccion(jComboBox1.getSelectedItem().toString());
     try {
-       p2= ProveedorBD.getByDireccion(p);
+       p2= (Proveedor) ProveedorBD.getByDireccionLike(p).get(0);
     } catch (Exception ex) {
         Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
     }

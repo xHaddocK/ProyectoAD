@@ -30,20 +30,12 @@ public class Proveedor {
         return ProveedorBD.getByCodLike(p);
     }
     
-    public static Proveedor getByNombre(Proveedor p) throws Exception{
-        return ProveedorBD.getByNombre(p);
-    }
-    
     public static ArrayList getByNombreLike(Proveedor p) throws Exception{
         return ProveedorBD.getByNombreLike(p);
     }
     
     public static ArrayList getByDireccionLike(Proveedor p) throws Exception{
         return ProveedorBD.getByDireccionLike(p);
-    }
-    
-    public static Proveedor getByDireccion(Proveedor p) throws Exception{
-        return ProveedorBD.getByDireccion(p);
     }
     
     public static boolean insert(Proveedor p) throws Exception{

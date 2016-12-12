@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import jdk.nashorn.internal.scripts.JO;
 import modelo.bd.GestionBD;
 import modelo.clases.*;
+import vista.Home;
 
 /**
  *
@@ -18,13 +19,17 @@ import modelo.clases.*;
 public class Main {
     
     public static void main(String[]args) throws Exception{
+        Home h = new Home();
+        h.setVisible(true);
+       
+        Proveedor p = (Proveedor) Proveedor.getByCodLike(new Proveedor("B00001", null, null, null)).get(0);
         
-        ArrayList<Gestion>lista = Gestion.getAll();
+        /*ArrayList<Gestion>lista = Gestion.getAll();
         
         for(Gestion g : lista){
             System.out.println(Proveedor.getByCod(g.getProv()).getNombre() + " " + Pieza.getByCod(g.getPieza()).getNombre() + " " + Proyecto.getByCod(g.getProy()).getNombre() + " " + g.getCantidad());
         }
-        /*
+        
         Proveedor p = new Proveedor("B00001", null, null, null);
         Proyecto proy = new Proyecto("C00003", null, null);
         Pieza pie = new Pieza("A00001", null, 0.0, null);

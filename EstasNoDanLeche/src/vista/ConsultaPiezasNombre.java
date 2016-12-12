@@ -170,7 +170,7 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
 
         p.setNombre(jComboBox1.getSelectedItem().toString());
         try {
-            p2= PiezaBD.getByNombre(p);
+            p2= (Pieza) PiezaBD.getByNombreLike(p).get(0);
         } catch (Exception ex) {
             Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
         }
