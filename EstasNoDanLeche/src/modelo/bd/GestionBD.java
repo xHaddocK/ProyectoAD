@@ -13,6 +13,18 @@ public class GestionBD extends ConexionBD{
     private static PreparedStatement sentenciaCon; //Consultas con parametros introducidos
     private static ResultSet rs;
     
+    public static ArrayList getAll() throws Exception{
+        connect();
+        
+        sentenciaSin = getConnection().createStatement();
+        rs = sentenciaSin.executeQuery("SELECT * FROM GESTION");
+        
+        ArrayList lista = convertirAArray(rs, "GESTION");
+        
+        disconnect();
+        return lista;
+    }
+    
     public static boolean insert(Gestion g) throws Exception{
         connect();
         
@@ -24,6 +36,70 @@ public class GestionBD extends ConexionBD{
         sentenciaCon.setInt(4, g.getCantidad());
         
         if(sentenciaCon.executeUpdate() > 0){
+            disconnect();
+            return true;
+        }
+        else{
+            disconnect();
+            return false;
+        }
+    }
+    
+    public static Gestion getGestion(Gestion g) throws Exception{
+        connect();
+        
+        String query = "SELECT * FROM GESTION WHERE COD_PROV = ? AND COD_PIE = ? AND COD_PROY = ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, g.getProv().getId());
+        sentenciaCon.setString(2, g.getPieza().getId());
+        sentenciaCon.setString(3, g.getProy().getId());
+        
+        rs = sentenciaCon.executeQuery();
+        
+        if(rs.next()){
+            //Hago la gestion
+            g.setCantidad(rs.getInt(4));
+            disconnect();
+            return g;
+        }
+        else{
+            //Mando gestion vacía
+            g = new Gestion();
+            disconnect();
+            return g;
+        }           
+    }
+    
+    public static boolean update(Gestion g) throws Exception{
+        connect();
+        
+        String query = "UPDATE GESTION SET CANTIDAD = ? WHERE COD_PROV = ? AND COD_PIE = ? AND COD_PROY = ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setInt(1, g.getCantidad());
+        sentenciaCon.setString(2, g.getProv().getId());
+        sentenciaCon.setString(3, g.getPieza().getId());
+        sentenciaCon.setString(4, g.getProy().getId());
+        
+        if(sentenciaCon.executeUpdate() >= 1){
+            disconnect();
+            return true;
+        }
+        else{
+            disconnect();
+            return false;
+        }
+    }
+    
+    public static boolean delete(Gestion g) throws Exception{
+        connect();
+        
+        String query = "DELETE FROM GESTION WHERE COD_PROV = ? AND COD_PIE = ? AND COD_PROY = ?;";
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, g.getProv().getId());
+        sentenciaCon.setString(2, g.getPieza().getId());
+        sentenciaCon.setString(3, g.getProy().getId());
+        
+        if(sentenciaCon.executeUpdate() >= 1){
             disconnect();
             return true;
         }

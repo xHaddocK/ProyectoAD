@@ -19,6 +19,46 @@ public class Main {
     
     public static void main(String[]args) throws Exception{
         
+        ArrayList<Gestion>lista = Gestion.getAll();
+        
+        for(Gestion g : lista){
+            System.out.println(Proveedor.getByCod(g.getProv()).getNombre() + " " + Pieza.getByCod(g.getPieza()).getNombre() + " " + Proyecto.getByCod(g.getProy()).getNombre() + " " + g.getCantidad());
+        }
+        /*
+        Proveedor p = new Proveedor("B00001", null, null, null);
+        Proyecto proy = new Proyecto("C00003", null, null);
+        Pieza pie = new Pieza("A00001", null, 0.0, null);
+        
+        Gestion g = new Gestion(p, pie, proy, 15);
+        
+        if(Gestion.getGestion(g).getProv().getId() != null){
+            if(Gestion.update(g)){
+                System.out.println("Updateado");
+            }
+            else{
+                System.out.println("no updateado");
+            }
+            
+            if(Gestion.delete(g)){
+                System.out.println("Borrado");
+            }
+            else{
+                System.out.println("No borrado");
+            }
+            
+            
+            g.setCantidad(1);
+            if(Gestion.insert(g)){
+                System.out.println("insertado");
+            }
+            else{
+                System.out.println("no insertado");
+            }
+        }
+        else{
+            System.out.println("no existe esa gestion");
+        }
+        
         Proveedor p = new Proveedor("B000", null, null, null);
         Proyecto proy = new Proyecto("C00", null, null);
         Pieza pie = new Pieza("A000", null, 0.0, null);
@@ -39,7 +79,6 @@ public class Main {
             System.out.println(puti3.getId());
         }
                 
-        /*
         Proveedor p = new Proveedor(null, null, null, "DIR");
         
         ArrayList<Proveedor>lista = Proveedor.getByDireccion(p);

@@ -51,6 +51,14 @@ public class ConexionBD {
                     lista.add(new Proyecto(rs.getString(1), rs.getString(2), rs.getString(3)));
                 }
                 break;
+            case "GESTION":
+                while(rs.next()){
+                    Proveedor prov = new Proveedor(rs.getString(1), null, null, null);
+                    Pieza pie = new Pieza(rs.getString(2), null, 0.0, null);
+                    Proyecto proy = new Proyecto(rs.getString(3), null, null);
+                    lista.add(new Gestion(prov, pie, proy, rs.getInt(4)));
+                }
+                break;
             default:
                 System.out.println("Introduce el nombre de la clase correctamente en el codigo");
         }

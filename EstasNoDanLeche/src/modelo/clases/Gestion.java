@@ -21,8 +21,24 @@ public class Gestion {
 
 //BD METHODS
     
+    public static ArrayList getAll() throws Exception{
+        return GestionBD.getAll();
+    }
+    
     public static boolean insert(Gestion g) throws Exception{
         return GestionBD.insert(g);
+    }
+    
+    public static Gestion getGestion(Gestion g) throws Exception{
+        return GestionBD.getGestion(g);
+    }
+    
+    public static boolean update(Gestion g) throws Exception{
+        return GestionBD.update(g);
+    }
+    
+    public static boolean delete(Gestion g) throws Exception{
+        return GestionBD.delete(g);
     }
     
     //Obtener las piezas suministradas por proveedor, devuelve -1 si hay algun error
