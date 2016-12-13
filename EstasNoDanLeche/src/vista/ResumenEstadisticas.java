@@ -137,7 +137,7 @@ public class ResumenEstadisticas extends javax.swing.JFrame {
 
         jLabel9.setText("Proveedor que ha suministrado a más  proyectos n/proy");
 
-        jLabel10.setText("Psroveedor que ha suministrado más piezas n/pieza");
+        jLabel10.setText("Proveedor que ha suministrado más piezas n/pieza");
 
         jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -248,9 +248,9 @@ public class ResumenEstadisticas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NumPiezasProveedor instancia = null;
+        EstadisticasPiezasProyectos instancia = null;
         try {
-            instancia = new NumPiezasProveedor();
+            instancia = new EstadisticasPiezasProyectos();
         } catch (Exception ex) {
             Logger.getLogger(ResumenEstadisticas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -258,7 +258,13 @@ public class ResumenEstadisticas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        EstadisticasPiezasProveedor instancia = null;
+        try {
+            instancia = new EstadisticasPiezasProveedor();
+        } catch (Exception ex) {
+            Logger.getLogger(ResumenEstadisticas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        instancia.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

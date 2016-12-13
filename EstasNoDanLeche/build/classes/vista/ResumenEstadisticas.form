@@ -199,7 +199,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Psroveedor que ha suministrado m&#xe1;s piezas n/pieza"/>
+        <Property name="text" type="java.lang.String" value="Proveedor que ha suministrado m&#xe1;s piezas n/pieza"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel17">

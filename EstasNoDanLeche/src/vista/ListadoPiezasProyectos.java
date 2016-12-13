@@ -5,36 +5,30 @@
  */
 package vista;
 
-import modelo.bd.ConexionBD;
-import static modelo.bd.ConexionBD.getConnection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.clases.Gestion;
-import modelo.clases.Proveedor;
+import modelo.clases.Proyecto;
 
 /**
  *
  * @author Iker
  */
-public class NumPiezasProveedor extends javax.swing.JFrame {
-    
-    public static Proveedor p;
-
+public class ListadoPiezasProyectos extends javax.swing.JFrame {
+ 
     /**
-     * Creates new form NumPiezasProveedor
+     * Creates new form ListadoPiezasProyectos
      */
-    public NumPiezasProveedor() throws Exception {
+    public ListadoPiezasProyectos() throws Exception {
         initComponents();
+        completarDatos();
     }
     
     public void completarDatos() throws Exception {
-        jTable1.setModel(Gestion.piezasByProv(p));
+        jTable1.setModel(Gestion.piezasToProy());
     }
     
-    public NumPiezasProveedor(Proveedor p) throws Exception {
-        this.p = p;
-         initComponents();
-        completarDatos();
-        
-    }
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,7 +43,6 @@ public class NumPiezasProveedor extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("NUMERO Y CANTIDAD DE PIEZAS SUMINISTRADAS POR PROVEEDOR ");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -73,11 +66,13 @@ public class NumPiezasProveedor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
         );
 
         pack();
@@ -86,6 +81,11 @@ public class NumPiezasProveedor extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_formWindowClosing
+
+    /**
+     * @param args the command line arguments
+     */
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

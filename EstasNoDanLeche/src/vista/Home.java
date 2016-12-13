@@ -292,6 +292,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        if(checkDB()){
         ConsultaProvCod instancia = null;
         try {
             instancia = new ConsultaProvCod();
@@ -299,14 +300,22 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
          instancia.setVisible(true);
+        }else{
+        JOptionPane.showMessageDialog(null, "No existe una base de datos");
+        }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+         if(checkDB()){
         GestionProveedores instancia = new GestionProveedores();
         instancia.setVisible(true);
+         }else{
+          JOptionPane.showMessageDialog(null, "No existe una base de datos");
+         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        if(checkDB()){
         ConsultaProvNombre instancia = null;
         try {
             instancia = new ConsultaProvNombre();
@@ -314,9 +323,13 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
          instancia.setVisible(true);
+        }else{
+         JOptionPane.showMessageDialog(null, "No existe una base de datos");
+        }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+         if(checkDB()){
         ConsultaProvDir instancia = null;
         try {
             instancia = new ConsultaProvDir();
@@ -324,44 +337,76 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
          instancia.setVisible(true);
+         }else{
+         JOptionPane.showMessageDialog(null, "No existe una base de datos");
+         }
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-       GestionPiezas instancia = new GestionPiezas();
+        if(checkDB()){
+        GestionPiezas instancia = new GestionPiezas();
         instancia.setVisible(true);
+        }else{
+        JOptionPane.showMessageDialog(null, "No existe una base de datos");
+        }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+         if(checkDB()){
         ConsultaPiezasCod instancia = new ConsultaPiezasCod();
         instancia.setVisible(true);
+         }else{
+         JOptionPane.showMessageDialog(null, "No existe una base de datos");
+         }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+         if(checkDB()){
         ConsultaPiezasNombre instancia = new ConsultaPiezasNombre();
         instancia.setVisible(true);
+         }else{
+         JOptionPane.showMessageDialog(null, "No existe una base de datos");
+         }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        if(checkDB()){
         GestionProyectos instancia = new GestionProyectos();
         instancia.setVisible(true);
+        }else{
+        JOptionPane.showMessageDialog(null, "No existe una base de datos");
+        }
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-         ConsultaProyectoCod instancia = new ConsultaProyectoCod();
+        if(checkDB()){ 
+        ConsultaProyectoCod instancia = new ConsultaProyectoCod();
         instancia.setVisible(true);
+        }else{
+        JOptionPane.showMessageDialog(null, "No existe una base de datos");
+        }
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-         ConsultaProyectoNombre instancia = new ConsultaProyectoNombre();
+         if(checkDB()){ 
+        ConsultaProyectoNombre instancia = new ConsultaProyectoNombre();
         instancia.setVisible(true);
+         }else{
+         JOptionPane.showMessageDialog(null, "No existe una base de datos");
+         }
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-         ConsultaProyectoCiudad instancia = new ConsultaProyectoCiudad();
+         if(checkDB()){  
+        ConsultaProyectoCiudad instancia = new ConsultaProyectoCiudad();
         instancia.setVisible(true);
+         }else{
+         JOptionPane.showMessageDialog(null, "No existe una base de datos");
+         }
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+       if(checkDB()){  
         GestionRelaciones instancia = null;
         try {
             instancia = new GestionRelaciones();
@@ -369,9 +414,13 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         instancia.setVisible(true);
+       }else{
+       JOptionPane.showMessageDialog(null, "No existe una base de datos");
+       }
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        if(checkDB()){  
         SuministrosProveedor instancia = null;
         try {
             instancia = new SuministrosProveedor();
@@ -379,9 +428,13 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         instancia.setVisible(true);
+        }else{
+        JOptionPane.showMessageDialog(null, "No existe una base de datos");
+        }
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        if(checkDB()){  
         PiezasProyectos instancia = null;
         try {
             instancia = new PiezasProyectos();
@@ -389,9 +442,13 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         instancia.setVisible(true);
+        }else{
+        JOptionPane.showMessageDialog(null, "No existe una base de datos");
+        }
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+         if(checkDB()){
         ResumenEstadisticas instancia = null;
         try {
             instancia = new ResumenEstadisticas();
@@ -399,6 +456,9 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         instancia.setVisible(true);
+         }else{
+         JOptionPane.showMessageDialog(null, "No existe una base de datos");
+         }
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed

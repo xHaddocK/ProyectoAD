@@ -71,8 +71,8 @@ public class Gestion {
     //Nº PIEZAS Y CANTIDAD DE PIEZAS SUMINISTRADAS EN PROYECTOS
         //Devuelve un array de dos posiciones, en la 0 está el número de piezas que han sido suministradas a proyectos y en la 1 está la cantidad total de piezas 
         //{-1,-1} si hay algún error
-    public static int[] numCantPiezasToProy() throws Exception{
-        return GestionBD.numCantPiezasToProy();
+    public static int[] numCantPiezasToProy(Proyecto p) throws Exception{
+        return GestionBD.numCantPiezasToProy(p);
     }
     
     //Nº PIEZAS Y CANTIDAD DE PIEZAS SUMINISTRADAS POR PROVEEDOR

@@ -204,19 +204,21 @@ public class GestionBD extends ConexionBD{
         return tm;
     }
     
-    public static int[] numCantPiezasToProy()throws Exception{
+    public static int[] numCantPiezasToProy(Proyecto p)throws Exception{
         connect();
         
         String query = "SELECT COUNT(DISTINCT(B.COD_PIE)) AS NUMERO_DE_PIEZAS, SUM(B.CANTIDAD) AS CANTIDAD_DE_PIEZAS\n" +
-                        "FROM PIEZA A, GESTION B\n" +
+                        "FROM PIEZA A, GESTION B, PROYECTO C\n" +
                         "WHERE A.COD_PIE = B.COD_PIE\n" +
                         "AND A.COD_PIE IN(\n" +
                             "SELECT COD_PIE\n" +
                             "FROM GESTION\n" +
-                        ");";
+                        ")\n"+
+                 "AND B.COD_PROY = C.COD_PROY AND C.COD_PROY = ?  ;";
         
-        sentenciaSin = getConnection().createStatement();
-        rs = sentenciaSin.executeQuery(query);
+        sentenciaCon = getConnection().prepareStatement(query);
+        sentenciaCon.setString(1, p.getId());
+        rs = sentenciaCon.executeQuery();
         
         if(rs.next()){
             int[]ret = {rs.getInt(1), rs.getInt(2)};

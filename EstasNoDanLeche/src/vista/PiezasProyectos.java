@@ -190,7 +190,15 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+         try {
+           
+            ListadoPiezasProyectos instancia = new ListadoPiezasProyectos();
+            instancia.setVisible(true);
+            
+            
+        } catch (Exception ex) {
+            Logger.getLogger(SuministrosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
