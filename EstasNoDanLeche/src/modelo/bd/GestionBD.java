@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.table.TableModel;
 import modelo.clases.*;
+import net.proteanit.sql.DbUtils;
 
 public class GestionBD extends ConexionBD{
     
@@ -23,6 +25,17 @@ public class GestionBD extends ConexionBD{
         
         disconnect();
         return lista;
+    }
+    
+    public static TableModel getAllTableModel() throws Exception{
+        connect();
+        
+        sentenciaSin = getConnection().createStatement();
+        rs = sentenciaSin.executeQuery("SELECT * FROM GESTION");
+        TableModel tm= DbUtils.resultSetToTableModel(rs);
+        
+        disconnect();
+        return tm;
     }
     
     public static boolean insert(Gestion g) throws Exception{

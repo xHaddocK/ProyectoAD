@@ -10,7 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import modelo.bd.ConexionBD;
-import static modelo.bd.ConexionBD.getConnection;
+import static modelo.bd.ConexionBD.*;
+import modelo.clases.Gestion;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -20,7 +21,7 @@ import net.proteanit.sql.DbUtils;
 public class ListadoRelaciones extends javax.swing.JFrame {
 
     private static Statement sentenciaSin;
-private static ResultSet rs;
+    private static ResultSet rs;
     /**
      * Creates new form ListadoRelaciones
      */
@@ -81,11 +82,7 @@ private static ResultSet rs;
     }//GEN-LAST:event_formWindowClosing
 public void completarTabla() throws SQLException, Exception {
 
-        ConexionBD.connect();
-        
-        sentenciaSin = getConnection().createStatement();
-        rs = sentenciaSin.executeQuery("SELECT * FROM GESTION");
-        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        jTable1.setModel(Gestion.getAllTableModel());
     }
 
 

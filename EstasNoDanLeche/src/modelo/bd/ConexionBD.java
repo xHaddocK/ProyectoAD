@@ -12,7 +12,7 @@ public class ConexionBD {
 	
     private static Connection c;
     
-    public static void connect() throws Exception{ 
+    protected static void connect() throws Exception{ 
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         String url="jdbc:mysql://localhost:3306/"+"proyectoad";
         c = DriverManager.getConnection(url,"root","");

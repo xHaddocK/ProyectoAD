@@ -6,7 +6,6 @@
 package vista;
 
 import modelo.bd.ConexionBD;
-import static modelo.bd.ConexionBD.connect;
 import static modelo.bd.ConexionBD.getConnection;
 
 /**
@@ -20,7 +19,6 @@ public class NumPiezasProveedor extends javax.swing.JFrame {
      */
     public NumPiezasProveedor() throws Exception {
         initComponents();
-        completarDatos();
     }
 
     /**
@@ -64,14 +62,6 @@ public class NumPiezasProveedor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-  public void completarDatos() throws Exception{
-    
-        
-  }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

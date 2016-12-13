@@ -1,6 +1,8 @@
 package modelo.clases;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.table.TableModel;
 import modelo.bd.GestionBD;
 
 public class Gestion {
@@ -23,6 +25,10 @@ public class Gestion {
     
     public static ArrayList getAll() throws Exception{
         return GestionBD.getAll();
+    }
+    
+    public static TableModel getAllTableModel() throws Exception{
+        return GestionBD.getAllTableModel();
     }
     
     public static boolean insert(Gestion g) throws Exception{
