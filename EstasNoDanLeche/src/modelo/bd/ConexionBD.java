@@ -1,5 +1,7 @@
 package modelo.bd;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -26,6 +28,32 @@ public class ConexionBD {
         catch (Exception e){
             return false;
         }
+    }
+    
+    public static void createDatabase() throws Exception{
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        String url="jdbc:mysql://localhost:3306/";
+        c = DriverManager.getConnection(url,"root","");
+        
+        //Ruta relativa YA
+        ScriptRunner runner = new ScriptRunner(c, false, false);
+        //runner.runScript(new BufferedReader(new FileReader("C:\\Users\\Marcos\\Documents\\GitHub\\ProyectoAD\\EstasNoDanLeche\\src\\resources\\scriptcreacion.sql")));
+        runner.runScript(new BufferedReader(new FileReader("src\\resources\\scriptcreacion.sql")));
+        
+        disconnect();
+    }
+    
+    public static void dropDatabase() throws Exception{
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        String url="jdbc:mysql://localhost:3306/";
+        c = DriverManager.getConnection(url,"root","");
+        
+        //Ruta relativa YA
+        ScriptRunner runner = new ScriptRunner(c, false, false);
+        //runner.runScript(new BufferedReader(new FileReader("C:\\Users\\Marcos\\Documents\\GitHub\\ProyectoAD\\EstasNoDanLeche\\src\\resources\\scriptborrar.sql")));
+        runner.runScript(new BufferedReader(new FileReader("src\\resources\\scriptborrar.sql")));
+        
+        disconnect();
     }
 	
     public static Connection getConnection(){

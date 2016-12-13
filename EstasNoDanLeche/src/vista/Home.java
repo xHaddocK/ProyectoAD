@@ -5,8 +5,12 @@
  */
 package vista;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.bd.ConexionBD;
+import modelo.bd.GestionBD;
 
 /**
  *
@@ -74,6 +78,11 @@ public class Home extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Borrar Base de Datos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Salir");
@@ -255,8 +264,31 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static boolean checkDB(){
+        try{
+            ArrayList lista = GestionBD.getAll();
+        }
+        catch(Exception e){
+            return false;
+        }
+        
+        return true;
+    }
+    
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        if(!checkDB()){
+            try{
+                ConexionBD.createDatabase();
+                JOptionPane.showMessageDialog(null, "LA BASE DE DATOS HA SIDO CREADA CORRECTAMENTE");
+            }
+            catch(Exception e){
+                System.out.println("ERROR");
+            }
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "LA BASE DE DATOS YA ESTÁ CREADA");
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -372,6 +404,22 @@ public class Home extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        if(checkDB()){
+            try{
+                ConexionBD.dropDatabase();
+                JOptionPane.showMessageDialog(null, "BASE DE DATOS ELIMINADA");
+            }
+            catch(Exception e){
+                System.out.println("ERROR");
+            }
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "LA BASE DE DATOS NO EXISTE");
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;

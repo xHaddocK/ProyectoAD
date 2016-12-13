@@ -8,6 +8,7 @@ package controlador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import jdk.nashorn.internal.scripts.JO;
+import modelo.bd.ConexionBD;
 import modelo.bd.GestionBD;
 import modelo.clases.*;
 import vista.Home;
@@ -18,7 +19,9 @@ import vista.Home;
  */
 public class Main {
     
+    
     public static void main(String[]args) throws Exception{
+        
         Home h = new Home();
         h.setVisible(true);
        

@@ -3,19 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProvNombre.java</file>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProyectoCiudad.java</file>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaPiezasNombre.java</file>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/SuministrosProveedor.java</file>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProyectoCod.java</file>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ResumenEstadisticas.java</file>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/clases/Gestion.java</file>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaPiezasCod.java</file>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/GestionRelaciones.java</file>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProyectoNombre.java</file>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProvCod.java</file>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/ConsultaProvDir.java</file>
-            <file>file:/C:/Users/9fpsp02/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/GestionBD.java</file>
+            <file>file:/C:/Users/Marcos/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/GestionBD.java</file>
+            <file>file:/C:/Users/Marcos/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/ScriptRunner.java</file>
+            <file>file:/C:/Users/Marcos/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/ConexionBD.java</file>
+            <file>file:/C:/Users/Marcos/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/clases/Gestion.java</file>
+            <file>file:/C:/Users/Marcos/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/controlador/Main.java</file>
+            <file>file:/C:/Users/Marcos/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/Home.java</file>
         </group>
     </open-files>
 </project-private>

@@ -57,14 +57,14 @@ public class Gestion {
         return GestionBD.ProyProvCantByPieza(p);
     }
     
-    //Obtener las piezas suministradas por proveedor, devuelve -1 si hay algun error
-    public static ArrayList piezasByProv(Proveedor p) throws Exception{
+    //MANDA TABLEMODEL, PORQUE NO SE VA A HACER NINGUNA OTRA GESTION
+    public static TableModel piezasByProv(Proveedor p) throws Exception{
         return GestionBD.piezasByProv(p);
     }
 
     //Obtener las piezas suministradas a proyectos
-    public static ArrayList piezasToProv() throws Exception{
-        return GestionBD.piezasToProv();
+    public static TableModel piezasToProy() throws Exception{
+        return GestionBD.piezasToProy();
     }
     
     //RESUMENES ESTADISTICOS VV

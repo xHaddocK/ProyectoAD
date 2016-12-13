@@ -168,7 +168,7 @@ public class GestionBD extends ConexionBD{
         }
     }
     
-    public static ArrayList piezasByProv(Proveedor p) throws Exception{
+    public static TableModel piezasByProv(Proveedor p) throws Exception{
         connect();
         
         String query = "SELECT A.COD_PIE, A.NOMBRE, A.PRECIO, A.DESCRIPCION\n" +
@@ -180,12 +180,13 @@ public class GestionBD extends ConexionBD{
         
         rs = sentenciaCon.executeQuery();
         
-        ArrayList lista = convertirAArray(rs, "PIEZA");
+        TableModel tm= DbUtils.resultSetToTableModel(rs);
         
-        return lista;
+        disconnect();
+        return tm;
     }
     
-    public static ArrayList piezasToProv() throws Exception{
+    public static TableModel piezasToProy() throws Exception{
         connect();
         
         String query = "SELECT *\n" +
@@ -197,10 +198,10 @@ public class GestionBD extends ConexionBD{
         sentenciaSin = getConnection().createStatement();
         rs = sentenciaSin.executeQuery(query);
         
-        ArrayList lista = convertirAArray(rs, "PIEZA");
+        TableModel tm= DbUtils.resultSetToTableModel(rs);
         
         disconnect();
-        return lista;
+        return tm;
     }
     
     public static int[] numCantPiezasToProy()throws Exception{
