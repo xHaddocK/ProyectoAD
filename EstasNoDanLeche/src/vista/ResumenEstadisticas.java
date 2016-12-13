@@ -5,6 +5,8 @@
  */
 package vista;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.bd.GestionBD;
 import modelo.clases.Pieza;
 import modelo.clases.Proveedor;
@@ -246,7 +248,12 @@ public class ResumenEstadisticas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NumPiezasProveedor instancia = new NumPiezasProveedor();
+        NumPiezasProveedor instancia = null;
+        try {
+            instancia = new NumPiezasProveedor();
+        } catch (Exception ex) {
+            Logger.getLogger(ResumenEstadisticas.class.getName()).log(Level.SEVERE, null, ex);
+        }
         instancia.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

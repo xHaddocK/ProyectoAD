@@ -168,7 +168,7 @@ public static ArrayList<Proyecto> proyectosList = new ArrayList<Proyecto>();
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         Proyecto p = new Proyecto();
         Proyecto p2 = new Proyecto();
-        if (jComboBox1.getSelectedItem().toString()!=null) {
+        if (jComboBox1.getSelectedItem()!=null) {
             p.setId(jComboBox1.getSelectedItem().toString());
             try {
                 p2= ProyectoBD.getByCod(p);

@@ -177,7 +177,7 @@ public static ArrayList<Proyecto> piezasList = new ArrayList<Proyecto>();
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         Proyecto p = new Proyecto();
         Proyecto p2 = new Proyecto();
-
+ if (jComboBox1.getSelectedItem()!=null) {
         p.setNombre(jComboBox1.getSelectedItem().toString());
         try {
             p2= (Proyecto) ProyectoBD.getByNombreLike(p).get(0);
@@ -188,7 +188,7 @@ public static ArrayList<Proyecto> piezasList = new ArrayList<Proyecto>();
         jLabel6.setText(p2.getNombre());
         jLabel5.setText(p2.getId());
         jLabel7.setText(p2.getCiudad());
-
+ }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**

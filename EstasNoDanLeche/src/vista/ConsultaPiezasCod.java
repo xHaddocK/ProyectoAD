@@ -161,7 +161,7 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         Pieza p = new Pieza();
         Pieza p2 = new Pieza();
-        if (jComboBox1.getSelectedItem().toString()!=null) {
+        if (jComboBox1.getSelectedItem()!=null) {
             p.setId(jComboBox1.getSelectedItem().toString());
             try {
                 p2= PiezaBD.getByCod(p);

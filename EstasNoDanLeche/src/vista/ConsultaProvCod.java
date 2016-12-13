@@ -168,15 +168,17 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
             proveedoresList = Proveedor.getByCodLike(p);
             completarDatosProveedorRecibidos(proveedoresList);
         } catch (Exception ex) {
-//            Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
 //            JOptionPane.showMessageDialog(this, "Error");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-       Proveedor p = new Proveedor();
+       
+        
+        Proveedor p = new Proveedor();
            Proveedor p2 = new Proveedor();
-        if (jComboBox1.getSelectedItem().toString()!=null) {
+        if (jComboBox1.getSelectedItem()!=null) {
               p.setId(jComboBox1.getSelectedItem().toString());
     try {
        p2= ProveedorBD.getByCod(p);
@@ -190,7 +192,7 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         jLabel8.setText(p2.getApellido());
         jLabel9.setText(p2.getDireccion());   
         }
-  
+    
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**

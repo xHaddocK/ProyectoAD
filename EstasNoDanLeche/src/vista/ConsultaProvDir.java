@@ -174,7 +174,7 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
          Proveedor p = new Proveedor();
            Proveedor p2 = new Proveedor();
-       
+        if (jComboBox1.getSelectedItem()!=null) {
        p.setDireccion(jComboBox1.getSelectedItem().toString());
     try {
        p2= (Proveedor) ProveedorBD.getByDireccionLike(p).get(0);
@@ -187,6 +187,7 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
         jLabel7.setText(p2.getId());
         jLabel8.setText(p2.getApellido());
         jLabel9.setText(p2.getDireccion());
+        }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
