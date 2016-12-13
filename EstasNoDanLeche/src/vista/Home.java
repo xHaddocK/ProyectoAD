@@ -246,6 +246,11 @@ public class Home extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Ayuda");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -480,6 +485,11 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "LA BASE DE DATOS NO EXISTE");
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+        Ayuda instancia =  new Ayuda();
+       instancia.setVisible(true);
+    }//GEN-LAST:event_jMenu6MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
