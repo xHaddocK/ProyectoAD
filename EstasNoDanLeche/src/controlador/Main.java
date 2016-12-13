@@ -22,7 +22,9 @@ public class Main {
         Home h = new Home();
         h.setVisible(true);
        
-        Proveedor p = (Proveedor) Proveedor.getByCodLike(new Proveedor("B00001", null, null, null)).get(0);
+        
+        
+        
         
         /*ArrayList<Gestion>lista = Gestion.getAll();
         

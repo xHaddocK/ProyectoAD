@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,9 +23,11 @@ import modelo.clases.Proyecto;
  * @author Iker
  */
 public class GestionRelaciones extends javax.swing.JFrame {
-public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
-public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
-public static ArrayList<Proyecto> proyectosList = new ArrayList<Proyecto>();
+
+    public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
+    public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
+    public static ArrayList<Proyecto> proyectosList = new ArrayList<Proyecto>();
+
     /**
      * Creates new form GestionRelaciones
      */
@@ -88,10 +91,25 @@ public static ArrayList<Proyecto> proyectosList = new ArrayList<Proyecto>();
         });
 
         jButton2.setText("Eliminar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Listado");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Modificar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("RELACIONES PIEZAS - PROVEEDORES - PROYECTOS");
 
@@ -283,37 +301,51 @@ public static ArrayList<Proyecto> proyectosList = new ArrayList<Proyecto>();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Gestion nuevaGestion = new Gestion();
-        Proveedor nuevoProveedor = new Proveedor();
-        nuevoProveedor.setId(jComboBox1.getSelectedItem().toString());
-        nuevoProveedor.setNombre(jLabel7.getText());
-        nuevoProveedor.setApellido(jLabel9.getText());
-        nuevoProveedor.setDireccion(jLabel11.getText());
-        nuevaGestion.setProv(nuevoProveedor);
-        
-        Pieza nuevaPieza=new Pieza();
-        nuevaPieza.setId(jComboBox2.getSelectedItem().toString());
-        nuevaPieza.setNombre(jLabel13.getText());
-        nuevaPieza.setPrecio(Double.parseDouble(jLabel15.getText()));
-        nuevaPieza.setDescripcion(jLabel17.getText());
-        nuevaGestion.setPieza(nuevaPieza);
-        
-        Proyecto nuevoProyecto=new Proyecto();
-        nuevoProyecto.setId(jComboBox3.getSelectedItem().toString());
-        nuevoProyecto.setNombre(jLabel19.getText());
-        nuevoProyecto.setCiudad(jLabel21.getText());
-        nuevaGestion.setProy(nuevoProyecto);
-        
-        nuevaGestion.setCantidad(Integer.parseInt(jTextField1.getText()));
-        
-        
-    try {
-        Gestion.insert(nuevaGestion);
-        JOptionPane.showMessageDialog(this, "Operación realizada con éxito");
-    } catch (Exception ex) {
-        Logger.getLogger(GestionRelaciones.class.getName()).log(Level.SEVERE, null, ex);
-    }
-       
+        boolean comprobacionCantidad = comprobarCantidad();
+
+        if (comprobacionCantidad == true) {
+            Gestion nuevaGestion = new Gestion();
+            Proveedor nuevoProveedor = new Proveedor();
+            nuevoProveedor.setId(jComboBox1.getSelectedItem().toString());
+            nuevoProveedor.setNombre(jLabel7.getText());
+            nuevoProveedor.setApellido(jLabel9.getText());
+            nuevoProveedor.setDireccion(jLabel11.getText());
+            nuevaGestion.setProv(nuevoProveedor);
+
+            Pieza nuevaPieza = new Pieza();
+            nuevaPieza.setId(jComboBox2.getSelectedItem().toString());
+            nuevaPieza.setNombre(jLabel13.getText());
+            nuevaPieza.setPrecio(Double.parseDouble(jLabel15.getText()));
+            nuevaPieza.setDescripcion(jLabel17.getText());
+            nuevaGestion.setPieza(nuevaPieza);
+
+            Proyecto nuevoProyecto = new Proyecto();
+            nuevoProyecto.setId(jComboBox3.getSelectedItem().toString());
+            nuevoProyecto.setNombre(jLabel19.getText());
+            nuevoProyecto.setCiudad(jLabel21.getText());
+            nuevaGestion.setProy(nuevoProyecto);
+
+            nuevaGestion.setCantidad(Integer.parseInt(jTextField1.getText()));
+            try {
+                boolean comprobacionExistencia = comprobarExistencia(nuevaGestion);
+                if (comprobacionExistencia == false) {
+                    try {
+                        Gestion.insert(nuevaGestion);
+                        JOptionPane.showMessageDialog(this, "Operación realizada con éxito");
+                    } catch (Exception ex) {
+                        Logger.getLogger(GestionRelaciones.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(this, "Error del servidor");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ya existe una relación entre los campos, si desea modificarla, pulse el botón MODIFICAR");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(GestionRelaciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Introduzca una cantidad");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -321,31 +353,29 @@ public static ArrayList<Proyecto> proyectosList = new ArrayList<Proyecto>();
     }//GEN-LAST:event_formWindowClosing
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-         Proveedor p = new Proveedor();
-           Proveedor p2 = new Proveedor();
-        if (jComboBox1.getSelectedItem().toString()!=null) {
-              p.setId(jComboBox1.getSelectedItem().toString());
-    try {
-       p2= ProveedorBD.getByCod(p);
-    } catch (Exception ex) {
-        Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
-    }
-      
-       
-                
-        jLabel7.setText(p2.getNombre());
-        jLabel9.setText(p2.getApellido());
-        jLabel11.setText(p2.getDireccion());   
+        Proveedor p = new Proveedor();
+        Proveedor p2 = new Proveedor();
+        if (jComboBox1.getSelectedItem().toString() != null) {
+            p.setId(jComboBox1.getSelectedItem().toString());
+            try {
+                p2 = ProveedorBD.getByCod(p);
+            } catch (Exception ex) {
+                Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            jLabel7.setText(p2.getNombre());
+            jLabel9.setText(p2.getApellido());
+            jLabel11.setText(p2.getDireccion());
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
-         Pieza p = new Pieza();
+        Pieza p = new Pieza();
         Pieza p2 = new Pieza();
-        if (jComboBox2.getSelectedItem().toString()!=null) {
+        if (jComboBox2.getSelectedItem().toString() != null) {
             p.setId(jComboBox2.getSelectedItem().toString());
             try {
-                p2= PiezaBD.getByCod(p);
+                p2 = PiezaBD.getByCod(p);
             } catch (Exception ex) {
                 Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -357,12 +387,12 @@ public static ArrayList<Proyecto> proyectosList = new ArrayList<Proyecto>();
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
-         Proyecto p = new Proyecto();
+        Proyecto p = new Proyecto();
         Proyecto p2 = new Proyecto();
-        if (jComboBox3.getSelectedItem().toString()!=null) {
+        if (jComboBox3.getSelectedItem().toString() != null) {
             p.setId(jComboBox3.getSelectedItem().toString());
             try {
-                p2= ProyectoBD.getByCod(p);
+                p2 = ProyectoBD.getByCod(p);
             } catch (Exception ex) {
                 Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -372,67 +402,149 @@ public static ArrayList<Proyecto> proyectosList = new ArrayList<Proyecto>();
         }
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Gestion gestionToDelete = new Gestion();
+        Proveedor borrarGestion = new Proveedor();
+        borrarGestion.setId(jComboBox1.getSelectedItem().toString());
+        borrarGestion.setNombre(jLabel7.getText());
+        borrarGestion.setApellido(jLabel9.getText());
+        borrarGestion.setDireccion(jLabel11.getText());
+        gestionToDelete.setProv(borrarGestion);
+
+        Pieza nuevaPieza = new Pieza();
+        nuevaPieza.setId(jComboBox2.getSelectedItem().toString());
+        nuevaPieza.setNombre(jLabel13.getText());
+        nuevaPieza.setPrecio(Double.parseDouble(jLabel15.getText()));
+        nuevaPieza.setDescripcion(jLabel17.getText());
+        gestionToDelete.setPieza(nuevaPieza);
+
+        Proyecto nuevoProyecto = new Proyecto();
+        nuevoProyecto.setId(jComboBox3.getSelectedItem().toString());
+        nuevoProyecto.setNombre(jLabel19.getText());
+        nuevoProyecto.setCiudad(jLabel21.getText());
+        gestionToDelete.setProy(nuevoProyecto);
+
+        try {
+            boolean comprobacionExistencia = comprobarExistencia(gestionToDelete);
+            if (comprobacionExistencia == true) {
+                try {
+                    Gestion.delete(gestionToDelete);
+                    JOptionPane.showMessageDialog(this, "Operación realizada con éxito");
+                } catch (Exception ex) {
+                    Logger.getLogger(GestionRelaciones.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(this, "Error del servidor");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No existe una relación entre los campos");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(GestionRelaciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+          boolean comprobacionCantidad = comprobarCantidad();
+
+        if (comprobacionCantidad == true) {
+            Gestion gestionActualizada = new Gestion();
+            Proveedor nuevoProveedor = new Proveedor();
+            nuevoProveedor.setId(jComboBox1.getSelectedItem().toString());
+            nuevoProveedor.setNombre(jLabel7.getText());
+            nuevoProveedor.setApellido(jLabel9.getText());
+            nuevoProveedor.setDireccion(jLabel11.getText());
+            gestionActualizada.setProv(nuevoProveedor);
+
+            Pieza nuevaPieza = new Pieza();
+            nuevaPieza.setId(jComboBox2.getSelectedItem().toString());
+            nuevaPieza.setNombre(jLabel13.getText());
+            nuevaPieza.setPrecio(Double.parseDouble(jLabel15.getText()));
+            nuevaPieza.setDescripcion(jLabel17.getText());
+            gestionActualizada.setPieza(nuevaPieza);
+
+            Proyecto nuevoProyecto = new Proyecto();
+            nuevoProyecto.setId(jComboBox3.getSelectedItem().toString());
+            nuevoProyecto.setNombre(jLabel19.getText());
+            nuevoProyecto.setCiudad(jLabel21.getText());
+            gestionActualizada.setProy(nuevoProyecto);
+
+            gestionActualizada.setCantidad(Integer.parseInt(jTextField1.getText()));
+            try {
+                boolean comprobacionExistencia = comprobarExistencia(gestionActualizada);
+                if (comprobacionExistencia == true) {
+                    try {
+                        Gestion.update(gestionActualizada);
+                        JOptionPane.showMessageDialog(this, "Operación realizada con éxito");
+                    } catch (Exception ex) {
+                        Logger.getLogger(GestionRelaciones.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(this, "Error del servidor");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No existe una relación entre los campos, si desea crearla, pulse el botón INSERTAR");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(GestionRelaciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Introduzca una cantidad");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            ListadoRelaciones instancia=new ListadoRelaciones();
+            instancia.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionRelaciones.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(GestionRelaciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+    public boolean comprobarCantidad() {
+        if (jTextField1.getText().equals("") || jTextField1.getText() == null) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    public boolean comprobarExistencia(Gestion gestion) throws Exception {
+        Gestion g = Gestion.getGestion(gestion);
+        if (g == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
-    public void completarCombos() throws Exception{
-     proveedoresList=Proveedor.getAll();
+    public void completarCombos() throws Exception {
+        proveedoresList = Proveedor.getAll();
         Proveedor p;
         for (Object proveedor : proveedoresList) {
-            p=(Proveedor) proveedor;
-           jComboBox1.addItem(p.getId()); 
+            p = (Proveedor) proveedor;
+            jComboBox1.addItem(p.getId());
         }
-        
-         piezasList=Pieza.getAll();
+
+        piezasList = Pieza.getAll();
         Pieza pi;
         for (Object pieza : piezasList) {
-            pi=(Pieza) pieza;
-           jComboBox2.addItem(pi.getId()); 
+            pi = (Pieza) pieza;
+            jComboBox2.addItem(pi.getId());
         }
-        
-        proyectosList=Proyecto.getAll();
+
+        proyectosList = Proyecto.getAll();
         Proyecto pro;
         for (Object proyecto : proyectosList) {
-            pro=(Proyecto) proyecto;
-           jComboBox3.addItem(pro.getId()); 
+            pro = (Proyecto) proyecto;
+            jComboBox3.addItem(pro.getId());
         }
-       
-    }
-    
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GestionRelaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GestionRelaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GestionRelaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestionRelaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new GestionRelaciones().setVisible(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(GestionRelaciones.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

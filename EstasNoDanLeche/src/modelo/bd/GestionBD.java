@@ -64,7 +64,7 @@ public class GestionBD extends ConexionBD{
         }
         else{
             //Mando gestion vacía
-            g = new Gestion();
+            g = null;
             disconnect();
             return g;
         }           
@@ -117,7 +117,7 @@ public class GestionBD extends ConexionBD{
                         "WHERE COD_PROV = ?;";
         sentenciaCon = getConnection().prepareStatement(query);
         sentenciaCon.setString(1, p.getId());
-        rs = sentenciaCon.executeQuery(query);
+        rs = sentenciaCon.executeQuery();
         
         if(rs.next()){
             int[]ret = {rs.getInt(1), rs.getInt(2)};
@@ -141,7 +141,7 @@ public class GestionBD extends ConexionBD{
         
         sentenciaCon = getConnection().prepareStatement(query);
         sentenciaCon.setString(1, p.getId());
-        rs = sentenciaSin.executeQuery(query);
+        rs = sentenciaCon.executeQuery();
         
         if(rs.next()){
             int[]ret = {rs.getInt(1), rs.getInt(2), rs.getInt(3)};

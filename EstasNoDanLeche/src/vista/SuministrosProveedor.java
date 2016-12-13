@@ -8,6 +8,7 @@ package vista;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.bd.GestionBD;
 import modelo.bd.ProveedorBD;
 import modelo.clases.Proveedor;
 
@@ -16,7 +17,9 @@ import modelo.clases.Proveedor;
  * @author Iker
  */
 public class SuministrosProveedor extends javax.swing.JFrame {
-public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
+
+    public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
+
     /**
      * Creates new form SuministrosProveedor
      */
@@ -180,70 +183,43 @@ public static ArrayList<Proveedor> proveedoresList = new ArrayList<Proveedor>();
     }//GEN-LAST:event_formWindowClosing
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-         Proveedor p = new Proveedor();
-           Proveedor p2 = new Proveedor();
-        if (jComboBox1.getSelectedItem().toString()!=null) {
-              p.setId(jComboBox1.getSelectedItem().toString());
-    try {
-       p2= ProveedorBD.getByCod(p);
-    } catch (Exception ex) {
-        Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
-    }
-      
-       
-                
-        jLabel5.setText(p2.getNombre());
-        jLabel6.setText(p2.getApellido());
-        jLabel7.setText(p2.getDireccion());   
+        Proveedor p = new Proveedor();
+        Proveedor p2 = new Proveedor();
+        if (jComboBox1.getSelectedItem().toString() != null) {
+            p.setId(jComboBox1.getSelectedItem().toString());
+            try {
+                p2 = ProveedorBD.getByCod(p);
+            } catch (Exception ex) {
+                Logger.getLogger(ConsultaProvNombre.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jLabel5.setText(p2.getNombre());
+            jLabel6.setText(p2.getApellido());
+            jLabel7.setText(p2.getDireccion());
+            try {
+                int[] numPiezasProyectos = GestionBD.PiezasProyectosByProv(p2);
+                if (numPiezasProyectos[0] == -1 && numPiezasProyectos[1] == -1) {
+                    jLabel10.setText("0");
+                    jLabel11.setText("0");
+                } else {
+                    jLabel10.setText(String.valueOf(numPiezasProyectos[0]));
+                    jLabel11.setText(String.valueOf(numPiezasProyectos[1]));
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(SuministrosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
-public void completarCombo() throws Exception{
-     proveedoresList=Proveedor.getAll();
+    public void completarCombo() throws Exception {
+        proveedoresList = Proveedor.getAll();
         Proveedor p;
         for (Object proveedor : proveedoresList) {
-            p=(Proveedor) proveedor;
-           jComboBox1.addItem(p.getId()); 
+            p = (Proveedor) proveedor;
+            jComboBox1.addItem(p.getId());
         }
-       
-    }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SuministrosProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SuministrosProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SuministrosProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SuministrosProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new SuministrosProveedor().setVisible(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(SuministrosProveedor.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

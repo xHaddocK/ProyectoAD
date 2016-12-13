@@ -5,22 +5,28 @@
  */
 package vista;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import modelo.bd.ConexionBD;
-import static modelo.bd.ConexionBD.connect;
 import static modelo.bd.ConexionBD.getConnection;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
  * @author Iker
  */
-public class NumPiezasProveedor extends javax.swing.JFrame {
+public class ListadoRelaciones extends javax.swing.JFrame {
 
+    private static Statement sentenciaSin;
+private static ResultSet rs;
     /**
-     * Creates new form NumPiezasProveedor
+     * Creates new form ListadoRelaciones
      */
-    public NumPiezasProveedor() throws Exception {
+    public ListadoRelaciones() throws SQLException, Exception {
         initComponents();
-        completarDatos();
+        completarTabla();
     }
 
     /**
@@ -36,7 +42,12 @@ public class NumPiezasProveedor extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("NUMERO Y CANTIDAD DE PIEZAS SUMINISTRADAS POR PROVEEDOR ");
+        setTitle("LISTADO DE RELACIONES");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -55,23 +66,28 @@ public class NumPiezasProveedor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-  public void completarDatos() throws Exception{
-    
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_formWindowClosing
+public void completarTabla() throws SQLException, Exception {
+
+        ConexionBD.connect();
         
-  }
+        sentenciaSin = getConnection().createStatement();
+        rs = sentenciaSin.executeQuery("SELECT * FROM GESTION");
+        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
