@@ -1,7 +1,10 @@
 package modelo.bd;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -38,7 +41,8 @@ public class ConexionBD {
         //Ruta relativa YA
         ScriptRunner runner = new ScriptRunner(c, false, false);
         //runner.runScript(new BufferedReader(new FileReader("C:\\Users\\Marcos\\Documents\\GitHub\\ProyectoAD\\EstasNoDanLeche\\src\\resources\\scriptcreacion.sql")));
-        runner.runScript(new BufferedReader(new FileReader("src\\resources\\scriptcreacion.sql")));
+       InputStream is = ConexionBD.class.getResourceAsStream("/resources/scriptcreacion.sql");
+        runner.runScript(new BufferedReader(new InputStreamReader(is)));
         
         disconnect();
     }
@@ -51,7 +55,8 @@ public class ConexionBD {
         //Ruta relativa YA
         ScriptRunner runner = new ScriptRunner(c, false, false);
         //runner.runScript(new BufferedReader(new FileReader("C:\\Users\\Marcos\\Documents\\GitHub\\ProyectoAD\\EstasNoDanLeche\\src\\resources\\scriptborrar.sql")));
-        runner.runScript(new BufferedReader(new FileReader("src\\resources\\scriptborrar.sql")));
+      InputStream is = ConexionBD.class.getResourceAsStream("/resources/scriptborrar.sql");
+        runner.runScript(new BufferedReader(new InputStreamReader(is)));
         
         disconnect();
     }

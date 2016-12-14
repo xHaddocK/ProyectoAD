@@ -90,11 +90,6 @@ public class GestionProveedores extends javax.swing.JFrame {
                 jTextField1MouseExited(evt);
             }
         });
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Nombre");
 
@@ -580,10 +575,6 @@ public class GestionProveedores extends javax.swing.JFrame {
             Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTextField1MouseExited
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
