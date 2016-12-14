@@ -445,50 +445,56 @@ public class GestionProveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String strOut = "";
-        String result;
-        Proveedor proveedorToInsert = new Proveedor();
-        proveedorToInsert.setId(jTextField1.getText().toUpperCase());
+        if (!jTextField1.getText().equalsIgnoreCase("") && !jTextField2.getText().equalsIgnoreCase("") && !jTextField3.getText().equalsIgnoreCase("") && !jTextField4.getText().equalsIgnoreCase("")) {
+            String strOut = "";
+            String result;
+            Proveedor proveedorToInsert = new Proveedor();
+            proveedorToInsert.setId(jTextField1.getText().toUpperCase());
 
-        if (jTextField2.getText().length() > 20) {
-            strOut = jTextField2.getText();
-            result = strOut.substring(0, 20);
-            proveedorToInsert.setNombre(result);
-        } else {
-            proveedorToInsert.setNombre(jTextField2.getText());
-        }
-
-        if (jTextField3.getText().length() > 30) {
-            strOut = jTextField3.getText();
-            result = strOut.substring(0, 30);
-            proveedorToInsert.setNombre(result);
-        } else {
-            proveedorToInsert.setApellido(jTextField3.getText());
-        }
-
-        if (jTextField4.getText().length() > 40) {
-            strOut = jTextField4.getText();
-            result = strOut.substring(0, 40);
-            proveedorToInsert.setDireccion(result);
-        } else {
-            proveedorToInsert.setDireccion(jTextField4.getText());
-        }
-
-        try {
-            if (proveedorToInsert.getId().length() > 6) {
-                JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
+            if (jTextField2.getText().length() > 20) {
+                strOut = jTextField2.getText();
+                result = strOut.substring(0, 20);
+                proveedorToInsert.setNombre(result);
             } else {
-                ProveedorBD.insert(proveedorToInsert);
-                JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
+                proveedorToInsert.setNombre(jTextField2.getText());
             }
 
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al insertar el campo");
-            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+            if (jTextField3.getText().length() > 30) {
+                strOut = jTextField3.getText();
+                result = strOut.substring(0, 30);
+                proveedorToInsert.setNombre(result);
+            } else {
+                proveedorToInsert.setApellido(jTextField3.getText());
+            }
+
+            if (jTextField4.getText().length() > 40) {
+                strOut = jTextField4.getText();
+                result = strOut.substring(0, 40);
+                proveedorToInsert.setDireccion(result);
+            } else {
+                proveedorToInsert.setDireccion(jTextField4.getText());
+            }
+
+            try {
+                if (proveedorToInsert.getId().length() > 6) {
+                    JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
+                } else {
+                    ProveedorBD.insert(proveedorToInsert);
+                    JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
+                }
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error al insertar el campo");
+                Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Rellene todos los campos");
         }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (!jTextField1.getText().equalsIgnoreCase("") && !jTextField2.getText().equalsIgnoreCase("") && !jTextField3.getText().equalsIgnoreCase("") && !jTextField4.getText().equalsIgnoreCase("")) {
         Proveedor proveedorToDelete = new Proveedor();
         proveedorToDelete.setId(jTextField1.getText().toUpperCase());
         Proveedor comprobarExistencia = null;
@@ -517,40 +523,47 @@ public class GestionProveedores extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }else{
+        JOptionPane.showMessageDialog(this, "Rellene todos los campos");
+        }
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Proveedor proveedorToUpdate = new Proveedor();
-        proveedorToUpdate.setId(jTextField1.getText().toUpperCase());
-        proveedorToUpdate.setNombre(jTextField2.getText());
-        proveedorToUpdate.setApellido(jTextField3.getText());
-        proveedorToUpdate.setDireccion(jTextField4.getText());
-        Proveedor comprobarExistencia = null;
-        try {
-            comprobarExistencia = ProveedorBD.getByCod(proveedorToUpdate);
-        } catch (Exception ex) {
-            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            if (comprobarExistencia.getId() != null) {
-                try {
-                    if (proveedorToUpdate.getId().length() > 6) {
-                        JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
-                    } else {
-                        ProveedorBD.update(proveedorToUpdate);
-                        JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
-                    }
-
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, "Error al actualizar el campo");
-                    Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "No existe un registro con ese código");
+        if (!jTextField1.getText().equalsIgnoreCase("") && !jTextField2.getText().equalsIgnoreCase("") && !jTextField3.getText().equalsIgnoreCase("") && !jTextField4.getText().equalsIgnoreCase("")) {
+            Proveedor proveedorToUpdate = new Proveedor();
+            proveedorToUpdate.setId(jTextField1.getText().toUpperCase());
+            proveedorToUpdate.setNombre(jTextField2.getText());
+            proveedorToUpdate.setApellido(jTextField3.getText());
+            proveedorToUpdate.setDireccion(jTextField4.getText());
+            Proveedor comprobarExistencia = null;
+            try {
+                comprobarExistencia = ProveedorBD.getByCod(proveedorToUpdate);
+            } catch (Exception ex) {
+                Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                if (comprobarExistencia.getId() != null) {
+                    try {
+                        if (proveedorToUpdate.getId().length() > 6) {
+                            JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
+                        } else {
+                            ProveedorBD.update(proveedorToUpdate);
+                            JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
+                        }
+
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, "Error al actualizar el campo");
+                        Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No existe un registro con ese código");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Rellene todos los campos");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

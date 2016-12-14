@@ -407,6 +407,7 @@ public class GestionProyectos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+if (!jTextField1.getText().equalsIgnoreCase("") && !jTextField2.getText().equalsIgnoreCase("") && !jTextField3.getText().equalsIgnoreCase("")) {
         String strOut = "";
         String result;
         Proyecto proyectoToInsert = new Proyecto();
@@ -444,9 +445,13 @@ public class GestionProyectos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al insertar el campo");
             Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
+}else{
+ JOptionPane.showMessageDialog(this, "Rellene todos los campos");
+}
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      if (!jTextField1.getText().equalsIgnoreCase("") && !jTextField2.getText().equalsIgnoreCase("") && !jTextField3.getText().equalsIgnoreCase("")) {
         Proyecto proyectoToUpdate = new Proyecto();
         proyectoToUpdate.setId(jTextField1.getText().toUpperCase());
         proyectoToUpdate.setNombre(jTextField2.getText());
@@ -478,9 +483,13 @@ public class GestionProyectos extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
+      }else{
+      JOptionPane.showMessageDialog(this, "Rellene todos los campos");
+      }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       if (!jTextField1.getText().equalsIgnoreCase("") && !jTextField2.getText().equalsIgnoreCase("") && !jTextField3.getText().equalsIgnoreCase("")) {
         Proyecto proyectoToDelete = new Proyecto();
         proyectoToDelete.setId(jTextField1.getText().toUpperCase());
         Proyecto comprobarExistencia = null;
@@ -509,6 +518,9 @@ public class GestionProyectos extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
+       }else{
+       JOptionPane.showMessageDialog(this, "Rellene todos los campos");
+       }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseExited

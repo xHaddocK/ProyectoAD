@@ -17,14 +17,16 @@ import modelo.clases.Pieza;
  * @author 9fpsp02
  */
 public class GestionPiezas extends javax.swing.JFrame {
-public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
+
+    public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
     public static int posicionLista;
+
     /**
      * Creates new form GestionPiezas
      */
     public GestionPiezas() {
         initComponents();
-        
+
     }
 
     /**
@@ -375,7 +377,7 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
     }//GEN-LAST:event_jTextField10ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE); 
+        this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -383,17 +385,17 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-         jTextField9.setText(String.valueOf(piezasList.size()));
-         posicionLista = piezasList.size() - 1;
+        jTextField9.setText(String.valueOf(piezasList.size()));
+        posicionLista = piezasList.size() - 1;
         Pieza p = piezasList.get(posicionLista);
         jTextField5.setText(p.getId());
         jTextField6.setText(p.getNombre());
         jTextField7.setText(p.getDescripcion());
-        
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       posicionLista = 1;
+        posicionLista = 1;
         jTextField9.setText(String.valueOf(posicionLista));
         Pieza p = piezasList.get(0);
         jTextField5.setText(p.getId());
@@ -402,7 +404,7 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-         if (posicionLista + 1 > piezasList.size()) {
+        if (posicionLista + 1 > piezasList.size()) {
             JOptionPane.showMessageDialog(this, "No hay más registros");
         } else {
             posicionLista += 1;
@@ -415,7 +417,7 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-         if (posicionLista -1 == 0) {
+        if (posicionLista - 1 == 0) {
             JOptionPane.showMessageDialog(this, "No hay más registros");
         } else {
             posicionLista -= 1;
@@ -435,107 +437,133 @@ public static ArrayList<Pieza> piezasList = new ArrayList<Pieza>();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String strOut = "";
-        String result;
-        Pieza piezaToInsert = new Pieza();
-       
-            piezaToInsert.setId(jTextField1.getText().toUpperCase());
-        
-        if(jTextField2.getText().length() > 20){
-            strOut=jTextField2.getText();
-     result = strOut.substring(0,20);
-     piezaToInsert.setNombre(result);
-        } else{
-            piezaToInsert.setNombre(jTextField2.getText());
-        }
-            piezaToInsert.setDescripcion(jTextField3.getText().toUpperCase());
-        
-       if(jTextField4.getText().length() > 7){
-            strOut=jTextField4.getText();
-     result = strOut.substring(0,7);
-     piezaToInsert.setPrecio(Double.parseDouble(result));
-        } else{
-           piezaToInsert.setPrecio(Double.parseDouble(jTextField4.getText()));
-        }
-            
-        
-        
-        try {
-            if (piezaToInsert.getId().length() > 6) {
-                JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
-            } else {
-                PiezaBD.insert(piezaToInsert);
-                JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
-            }
 
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al insertar el campo");
-            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+        if (!jTextField1.getText().equalsIgnoreCase("") && !jTextField2.getText().equalsIgnoreCase("") && !jTextField3.getText().equalsIgnoreCase("") && !jTextField4.getText().equalsIgnoreCase("")) {
+            try {
+                double numero = Double.parseDouble(jTextField4.getText());
+
+                String strOut = "";
+                String result;
+                Pieza piezaToInsert = new Pieza();
+
+                piezaToInsert.setId(jTextField1.getText().toUpperCase());
+
+                if (jTextField2.getText().length() > 20) {
+                    strOut = jTextField2.getText();
+                    result = strOut.substring(0, 20);
+                    piezaToInsert.setNombre(result);
+                } else {
+                    piezaToInsert.setNombre(jTextField2.getText());
+                }
+                piezaToInsert.setDescripcion(jTextField3.getText().toUpperCase());
+
+                if (jTextField4.getText().length() > 7) {
+                    strOut = jTextField4.getText();
+                    result = strOut.substring(0, 7);
+                    piezaToInsert.setPrecio(Double.parseDouble(result));
+                } else {
+                    piezaToInsert.setPrecio(Double.parseDouble(jTextField4.getText()));
+                }
+
+                try {
+                    if (piezaToInsert.getId().length() > 6) {
+                        JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
+                    } else {
+                        PiezaBD.insert(piezaToInsert);
+                        JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
+                    }
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error al insertar el campo");
+                    Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "El precio debe ser numérico");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Rellene todos los campos");
         }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Pieza piezaToUpdate = new Pieza();
-        piezaToUpdate.setId(jTextField1.getText().toUpperCase());
-        piezaToUpdate.setNombre(jTextField2.getText());
-        piezaToUpdate.setDescripcion(jTextField3.getText());
-        piezaToUpdate.setPrecio(Double.parseDouble(jTextField4.getText()));
-        Pieza comprobarExistencia = null;
-        try {
-            comprobarExistencia = PiezaBD.getByCod(piezaToUpdate);
-        } catch (Exception ex) {
-            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            if (comprobarExistencia.getId() != null) {
-                try {
-                    if (piezaToUpdate.getId().length() > 6) {
-                        JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
-                    } else {
-                        PiezaBD.update(piezaToUpdate);
-                        JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
-                    }
+        if (!jTextField1.getText().equalsIgnoreCase("") && !jTextField2.getText().equalsIgnoreCase("") && !jTextField3.getText().equalsIgnoreCase("") && !jTextField4.getText().equalsIgnoreCase("")) {
+            try {
+                double numero = Double.parseDouble(jTextField4.getText());
 
+                Pieza piezaToUpdate = new Pieza();
+                piezaToUpdate.setId(jTextField1.getText().toUpperCase());
+                piezaToUpdate.setNombre(jTextField2.getText());
+                piezaToUpdate.setDescripcion(jTextField3.getText());
+                piezaToUpdate.setPrecio(Double.parseDouble(jTextField4.getText()));
+                Pieza comprobarExistencia = null;
+                try {
+                    comprobarExistencia = PiezaBD.getByCod(piezaToUpdate);
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, "Error al actualizar el campo");
                     Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "No existe un registro con ese código");
+                try {
+                    if (comprobarExistencia.getId() != null) {
+                        try {
+                            if (piezaToUpdate.getId().length() > 6) {
+                                JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
+                            } else {
+                                PiezaBD.update(piezaToUpdate);
+                                JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
+                            }
+
+                        } catch (Exception ex) {
+                            JOptionPane.showMessageDialog(this, "Error al actualizar el campo");
+                            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No existe un registro con ese código");
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "El precio debe ser numérico");
             }
-        } catch (Exception ex) {
-            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Rellene todos los campos");
         }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Pieza piezaToDelete = new Pieza();
-        piezaToDelete.setId(jTextField1.getText().toUpperCase());
-        Pieza comprobarExistencia = null;
-        try {
-            comprobarExistencia = PiezaBD.getByCod(piezaToDelete);
-        } catch (Exception ex) {
-            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            if (comprobarExistencia.getId() != null) {
-                try {
-                    if (piezaToDelete.getId().length() > 6) {
-                        JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
-                    } else {
-                        PiezaBD.delete(piezaToDelete);
-                        JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
-                    }
-
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, "Error al eliminar el campo");
-                    Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "No existe un registro con ese código");
+        if (!jTextField1.getText().equalsIgnoreCase("") && !jTextField2.getText().equalsIgnoreCase("") && !jTextField3.getText().equalsIgnoreCase("") && !jTextField4.getText().equalsIgnoreCase("")) {
+            Pieza piezaToDelete = new Pieza();
+            piezaToDelete.setId(jTextField1.getText().toUpperCase());
+            Pieza comprobarExistencia = null;
+            try {
+                comprobarExistencia = PiezaBD.getByCod(piezaToDelete);
+            } catch (Exception ex) {
+                Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                if (comprobarExistencia.getId() != null) {
+                    try {
+                        if (piezaToDelete.getId().length() > 6) {
+                            JOptionPane.showMessageDialog(this, "El código debe tener como máximo 6 carácteres");
+                        } else {
+                            PiezaBD.delete(piezaToDelete);
+                            JOptionPane.showMessageDialog(this, "Operación realizada correctamente");
+                        }
+
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, "Error al eliminar el campo");
+                        Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No existe un registro con ese código");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(GestionProveedores.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Rellene todos los campos");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
