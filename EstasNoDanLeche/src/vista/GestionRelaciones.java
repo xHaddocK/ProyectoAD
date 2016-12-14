@@ -445,8 +445,8 @@ public class GestionRelaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-          boolean comprobacionCantidad = comprobarCantidad();
-
+        boolean comprobacionCantidad = comprobarCantidad();
+        int nuevaCantidad = Integer.parseInt(jTextField1.getText());
         if (comprobacionCantidad == true) {
             Gestion gestionActualizada = new Gestion();
             Proveedor nuevoProveedor = new Proveedor();
@@ -468,12 +468,12 @@ public class GestionRelaciones extends javax.swing.JFrame {
             nuevoProyecto.setNombre(jLabel19.getText());
             nuevoProyecto.setCiudad(jLabel21.getText());
             gestionActualizada.setProy(nuevoProyecto);
-
-            gestionActualizada.setCantidad(Integer.parseInt(jTextField1.getText()));
+gestionActualizada.setCantidad(nuevaCantidad);
             try {
                 boolean comprobacionExistencia = comprobarExistencia(gestionActualizada);
                 if (comprobacionExistencia == true) {
                     try {
+                        gestionActualizada.setCantidad(nuevaCantidad);
                         Gestion.update(gestionActualizada);
                         JOptionPane.showMessageDialog(this, "Operación realizada con éxito");
                     } catch (Exception ex) {
@@ -494,7 +494,7 @@ public class GestionRelaciones extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
-            ListadoRelaciones instancia=new ListadoRelaciones();
+            ListadoRelaciones instancia = new ListadoRelaciones();
             instancia.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(GestionRelaciones.class.getName()).log(Level.SEVERE, null, ex);
