@@ -391,6 +391,7 @@ public class GestionPiezas extends javax.swing.JFrame {
         jTextField5.setText(p.getId());
         jTextField6.setText(p.getNombre());
         jTextField7.setText(p.getDescripcion());
+        jTextField8.setText(String.valueOf(p.getPrecio()));
 
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -597,6 +598,7 @@ public class GestionPiezas extends javax.swing.JFrame {
         jTextField5.setText(p.getId());
         jTextField6.setText(p.getNombre());
         jTextField7.setText(p.getDescripcion());
+       jTextField8.setText(String.valueOf(p.getPrecio()));
         jTextField10.setText(String.valueOf(piezasList.size()));
     }
 

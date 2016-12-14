@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/ConexionBD.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/Home.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/resources/scriptcreacion.sql</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/GestionBD.java</file>
             <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/GestionProyectos.java</file>
+            <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/modelo/bd/ScriptRunner.java</file>
             <file>file:/C:/Users/Iker/Documents/GitHub/ProyectoAD/EstasNoDanLeche/src/vista/GestionProveedores.java</file>
         </group>
     </open-files>
